@@ -40,7 +40,9 @@ body{
 #top .menu ul li a {
     text-decoration: none;
     color: white;
-    background: -webkit-gradient(linear, 50% 0%, 50% 100%, from(#0093DD), to(#28166E));
+    -moz-box-shadow: inset 0px -10px 18px #28166E;
+    -webkit-box-shadow: inset 0px -10px 18px #28166E;
+    box-shadow: inset 0px -10px 18px #28166E;
     background-color:#0093DD;
     padding: 5px 10px;
     -moz-border-radius: 10px;
@@ -52,16 +54,17 @@ body{
 }
 #top .menu ul li a:hover {
     color: #28166E;
-    background: -webkit-gradient(linear, 50% 100%, 50% 0%, from(#ffffff), to(#0093DD));
-    background-color:#0093DD;
+    -moz-box-shadow: inset 0px -10px 18px #FFFFFF;
+    -webkit-box-shadow: inset 0px -10px 18px #FFFFFF;
+    box-shadow: inset 0px -10px 18px #FFFFFF;
+    background-color: #0093DD;
 }
 #logo{
     margin: 0 auto;
     width: 350px;
 }
 #container{
-    background: right url("../images/arabesco_fundo.png") no-repeat white;
-    background-size: 60% 100%;
+    background: right top url("../images/arabesco_fundo.png") no-repeat white;
     margin: 0 auto;
     min-height: 200px;
     padding: 10px;
