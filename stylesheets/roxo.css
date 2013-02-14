@@ -1,0 +1,22 @@
+.titulo{
+    font-family: "Kunstler Script";
+    color: #B2A1C7;
+    text-shadow: 1px 1px 1px #5F497A;
+}
+.foto img {
+    border-color: #7D4DA1;
+}
+.posicao1 {
+    border-color: #B2A1C7;
+}
+.posicao2 {
+    border-color: #7D34AA;
+}
+.posicao3 {
+    border-color: #D3B0E2;
+}
+.posicao1 p, strong,
+.posicao2 p, strong,
+.posicao3 p, strong {
+    color: #D3B0E2;
+}
