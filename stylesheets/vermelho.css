@@ -1,0 +1,23 @@
+.titulo{
+    font-family: "Broadway BT";
+    color: #FF6161;
+    text-shadow: 3px 3px 3px #B00000;
+    font-size: 80px;
+}
+.foto img {
+    border-color: #FF4747;
+}
+.posicao1 {
+    border-color: #FFA3A3;
+}
+.posicao2 {
+    border-color: #BC0000;
+}
+.posicao3 {
+    border-color: #FF0909;
+}
+.posicao1 p strong,
+.posicao2 p strong,
+.posicao3 p strong {
+    color: #FF1414;
+}

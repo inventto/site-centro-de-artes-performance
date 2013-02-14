@@ -1,7 +1,8 @@
 .titulo{
-    font-family: "Kunstler Script";
+    font-family: "JasmineUPC";
     color: #B2A1C7;
-    text-shadow: 1px 1px 1px #5F497A;
+    text-shadow: 3px 3px 3px #5F497A;
+    font-size: 80px;
 }
 .foto img {
     border-color: #7D4DA1;
@@ -15,8 +16,8 @@
 .posicao3 {
     border-color: #D3B0E2;
 }
-.posicao1 p, strong,
-.posicao2 p, strong,
-.posicao3 p, strong {
+.posicao1 p strong,
+.posicao2 p strong,
+.posicao3 p strong {
     color: #D3B0E2;
 }

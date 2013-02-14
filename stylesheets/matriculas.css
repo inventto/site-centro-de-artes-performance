@@ -1,0 +1,11 @@
+.titulo{
+    font-family: "JasmineUPC";
+    color: #24A4FF;
+    text-shadow: 3px 3px 3px #010CFE;
+    font-size: 120px;
+}
+.foto img {
+    border-color: #053A62;
+    width: 450px;
+    margin-left: 70px;
+}

@@ -2,7 +2,31 @@
     font-family: "Kunstler Script";
     font-style: normal;
     font-weight: normal;
-    src: local('Kunstler'), local('Kunstler Script'), local('Kunstler Script, Regular'), url('http://www.performancefb.com/css/Kunstler.ttf') format('truetype');
+    src: local("Kunstler Script"), url('http://www.performancefb.com/css/Kunstler.ttf') format('truetype');
+}
+@font-face{
+    font-family: "JasmineUPC";
+    font-style: normal;
+    font-weight: normal;
+    src: local("JasmineUPC"),  local("JasmineUPC, Regular"), url('http://www.performancefb.com/css/JasmineUPC.ttf') format('truetype');
+}
+@font-face{
+    font-family: "Broadway";
+    font-style: normal;
+    font-weight: normal;
+    src: local("Broadway BT"), local("Broadway BT, Regular"), url('http://www.performancefb.com/css/Broadway.ttf') format('truetype');
+}
+@font-face{
+    font-family: "Bauhaus93";
+    font-style: normal;
+    font-weight: normal;
+    src: local("Bauhaus 93"), local("Bauhaus 93, Regular"), url('http://www.performancefb.com/css/Bauhaus93.ttf') format('truetype');
+}
+@font-face{
+    font-family: "CooperBlack";
+    font-style: normal;
+    font-weight: normal;
+    src: local("Cooper Black"), local("Cooper Black, Regular"), url('http://www.performancefb.com/css/CooperBlack.ttf') format('truetype');
 }
 * {
     font-family: Verdana, Arial, Helvetica
@@ -161,4 +185,18 @@ body{
 i{
     clear: both;
     display: block;
+}
+.matriculas_abertas{
+    margin: 15px 175px 19px 0px;
+    float: right;
+    background-color: #E5E5E5;
+    border-radius: 30px;
+    padding: 5px;
+    width: 250px;
+}
+.matriculas_abertas p{
+    font-size: 15px;
+}
+.matriculas_abertas p strong{
+   font-size: 40px;
 }

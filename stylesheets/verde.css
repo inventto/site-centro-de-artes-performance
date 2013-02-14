@@ -1,0 +1,23 @@
+.titulo{
+    font-family: "Cooper Black";
+    color: #A0EC9C;
+    text-shadow: 3px 3px 3px #007400;
+    font-size: 80px;
+}
+.foto img {
+    border-color: #6BE165;
+}
+.posicao1 {
+    border-color: #ABEEA8;
+}
+.posicao2 {
+    border-color: #196D15;
+}
+.posicao3 {
+    border-color: #2DC026;
+}
+.posicao1 p strong,
+.posicao2 p strong,
+.posicao3 p strong {
+    color: #7F7F7F;
+}

@@ -1,0 +1,23 @@
+.titulo{
+    font-family: "Bauhaus 93";
+    color: #7F7F7F;
+    text-shadow: 3px 3px 3px #272727;
+    font-size: 80px;
+}
+.foto img {
+    border-color: #7F7F7F;
+}
+.posicao1 {
+    border-color: #BFBFBF;
+}
+.posicao2 {
+    border-color: #0D0D0D;
+}
+.posicao3 {
+    border-color: #5A5A5A;
+}
+.posicao1 p strong,
+.posicao2 p strong,
+.posicao3 p strong {
+    color: #A3A3A3;
+}
