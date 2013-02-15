@@ -45,7 +45,7 @@ var flickrhelpers = null;
                         for (i=0; i<length; i++) {
                             photoset = flickrData.photosets.photoset[i];
                             args = "flickrSet=" + photoset.id;
-                            sets.append("<a href='?" + args + "' title='" + photoset.description._content + "'>" + photoset.title._content +  "</a>");
+                            sets.append("<a href='?" + args + "' title='" + photoset.description._content + "'>" + photoset.title._content +  " </a>");
                         }
                         if (settings.flickrSet === null)
                            settings.flickrSet = flickrData.photosets.photoset[0].id;
