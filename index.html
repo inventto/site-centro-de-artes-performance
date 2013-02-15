@@ -4,12 +4,41 @@
         <title>Performance</title>
         <meta charset="utf-8">
         <link href="stylesheets/application.css" rel="stylesheet" type="text/css" />
-        <script type="text/javascript" src="javascripts/jquery.min.js">
-        </script>
+        <script src="javascripts/jquery.min.js" type="text/javascript"></script>
+        <script src="javascripts/jquery.timeago.js" type="text/javascript"></script>
+
         <script type="text/javascript">
             $(document).ready(function(){
-                    $(".menu").load("_menu.html");
+                 $(".menu").load("_menu.html");
             });
+
+            jQuery(document).ready(function() {
+                 $("abbr.timeago").timeago();
+            });
+
+            var flickrUser = '93217661@N06', flickrKey = '326464b090f1fac8f2280140544a1d22', flickrSet = '72157632768213913';
+            $.getJSON("http://api.flickr.com/services/rest/?format=json&method=flickr.photosets.getList&user_id=" + flickrUser + "&api_key=" + flickrKey + "&jsoncallback=?", function(flickrData){
+                 var element = $('#albuns');
+                 element.append('<div id="flickr_sets"></div>');
+                 var length = flickrData.photosets.total;
+                 var sets = $("#flickr_sets");
+                 for (i=0; i<length; i++) {
+                    photoset = flickrData.photosets.photoset[i];
+                    args = "flickrSet=" + photoset.id;
+                    sets.append("<div id='album_" + photoset.id + "'><a href='?" + args + "' title='" + photoset.description._content + "'>" + photoset.title._content + " </a></div>");
+                    loadFlickrSet(photoset.id);
+                 }
+            });
+            loadFlickrSet = function(flickrSet){
+                $.getJSON("http://api.flickr.com/services/rest/?format=json&method=flickr.photosets.getPhotos&photoset_id=" + flickrSet + "&extras=date_upload&api_key=" + flickrKey + "&jsoncallback=?", function(flickrData){
+                        element = $('#flickr_sets');
+                        last_photo = flickrData.photoset.photo.length - 1;
+    					var thumbURL = 'http://farm' + flickrData.photoset.photo[last_photo].farm + '.' + 'static.flickr.com/' + flickrData.photoset.photo[last_photo].server + '/' + flickrData.photoset.photo[last_photo].id + '_' + flickrData.photoset.photo[last_photo].secret + '_s.jpg'
+                        time_ago = jQuery.timeago(new Date(flickrData.photoset.photo[last_photo].dateupload * 1000));
+	    				var thumbHTML = '<img src=' + thumbURL + ' width="75" height="75" title="' + flickrData.photoset.photo[last_photo].title + '"> ' + time_ago;
+                        $("#album_" + flickrSet).append(thumbHTML);
+                });
+            }
         </script>
     </head>
     <body>
@@ -23,7 +52,7 @@
             </div>
         </div>
         <div id="container">
-            container
+            <div id="albuns"><h2>Últimas atualizações dos álbuns:</h2></div>
         </div>
         <div id="footer">
             <div class="menu">
