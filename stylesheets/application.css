@@ -61,6 +61,28 @@ body{
     float: left;
     margin: 0 5px
 }
+.menu ul li ul {
+    padding-top: 10px;
+    margin-left: -50px;
+    position: absolute;
+    display: none;
+    z-index: 1;
+}
+#footer .menu ul li ul{
+    position: absolute;
+    display: none;
+}
+#footer .menu ul li:hover ul {
+    display: block;
+}
+.menu ul li:hover ul {
+    display: block;
+    float: top;
+}
+.menu ul li ul li {
+    float: none;
+    height: 30px;
+}
 #top .menu ul li a {
     text-decoration: none;
     color: white;
