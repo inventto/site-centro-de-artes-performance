@@ -1,0 +1,9 @@
+.foto img {
+    border-color: #6BE165;
+}
+.texto{
+    width: 450px;
+    background-color: rgba(0,0,0,0.1);
+    padding: 15px;
+    border-radius: 30px;
+}
