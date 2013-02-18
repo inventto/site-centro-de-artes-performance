@@ -2,31 +2,31 @@
     font-family: "Kunstler Script";
     font-style: normal;
     font-weight: normal;
-    src: local("Kunstler Script"), url('http://www.performancefb.com/css/Kunstler.ttf') format('truetype');
+    src: local("Kunstler Script"), url('./fonts/Kunstler.ttf') format('truetype');
 }
 @font-face{
     font-family: "JasmineUPC";
     font-style: normal;
     font-weight: normal;
-    src: local("JasmineUPC"),  local("JasmineUPC, Regular"), url('http://www.performancefb.com/css/JasmineUPC.ttf') format('truetype');
+    src: local("JasmineUPC"),  local("JasmineUPC, Regular"), url('fonts/JasmineUPC.ttf') format('truetype');
 }
 @font-face{
     font-family: "Broadway";
     font-style: normal;
     font-weight: normal;
-    src: local("Broadway BT"), local("Broadway BT, Regular"), url('http://www.performancefb.com/css/Broadway.ttf') format('truetype');
+    src: local("Broadway BT"), local("Broadway BT, Regular"), url('fonts/Broadway.ttf') format('truetype');
 }
 @font-face{
     font-family: "Bauhaus93";
     font-style: normal;
     font-weight: normal;
-    src: local("Bauhaus 93"), local("Bauhaus 93, Regular"), url('http://www.performancefb.com/css/Bauhaus93.ttf') format('truetype');
+    src: local("Bauhaus 93"), local("Bauhaus 93, Regular"), url('fonts/Bauhaus93.ttf') format('truetype');
 }
 @font-face{
     font-family: "CooperBlack";
     font-style: normal;
     font-weight: normal;
-    src: local("Cooper Black"), local("Cooper Black, Regular"), url('http://www.performancefb.com/css/CooperBlack.ttf') format('truetype');
+    src: local("Cooper Black"), local("Cooper Black, Regular"), url('fonts/CooperBlack.ttf') format('truetype');
 }
 * {
     font-family: Verdana, Arial, Helvetica
@@ -120,10 +120,8 @@ body{
     -webkit-border-radius:10px;
     border-radius:10px;
 }
-.menu ul li a:hover {
-    color: #28166E;
-}
-#top .menu ul li a:hover {
+#top .menu ul li a:hover,
+#top .menu ul li a.selecionado {
     color: #28166E;
     -moz-box-shadow: inset 0px -10px 18px #FFFFFF;
     -webkit-box-shadow: inset 0px -10px 18px #FFFFFF;
