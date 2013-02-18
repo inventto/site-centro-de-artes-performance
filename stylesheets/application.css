@@ -86,6 +86,11 @@ body{
     display: block;
     text-align: top;
 }
+#footer ul li ul li {
+    margin-top: -63px;
+    background-color: rgb(229, 229, 255);
+    border: 1px solid rgb(229, 229, 255);
+}
 .menu ul li:hover ul {
     display: block;
     float: top;
@@ -171,8 +176,12 @@ body{
     -webkit-box-shadow: 0px 0px 20px #000000;
     box-shadow: 0px 0px 20px #000000;
 }
+#footer ul li a:hover {
+    text-decoration: underline;
+}
 #footer ul li a{
     padding: 10px;
+    text-decoration: none;
 }
 .texto{
     width: 350px;
