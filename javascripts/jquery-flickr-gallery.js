@@ -36,6 +36,23 @@ var flickrhelpers = null;
 				// CSS jqfobject overflow for aspect ratio
 				element.css("overflow","hidden");
 
+                // Set navigation click event:s
+                element.click(function() {
+                    //next
+                    if ($('#flickr_div').css('cursor') == "e-resize") {
+                        if (settings.currentIndex < (settings.imgArray.length - 1)) {
+                            settings.currentIndex = settings.currentIndex + 1;
+                            flickrhelpers.navImg(settings.currentIndex);
+                        }
+                    }
+                    //prev
+                    if ($('#flickr_div').css('cursor') == "w-resize") {
+                        if (settings.currentIndex > 0) {
+                            settings.currentIndex = settings.currentIndex - 1;
+                            flickrhelpers.navImg(settings.currentIndex);
+                        }
+                    }
+                });
 
                 if (!(settings.flickrUser === null)) {
                     $.getJSON("http://api.flickr.com/services/rest/?format=json&method=flickr.photosets.getList&user_id=" + settings.flickrUser + "&api_key=" + settings.flickrKey + "&jsoncallback=?", function(flickrData){
@@ -71,25 +88,6 @@ var flickrhelpers = null;
 						settings.imgArray[i] = photoURL;
 						settings.titleArray[i] = flickrData.photoset.photo[i].title;
 					}
-
-					// Create previous and next buttons
-					$("body").append('<div id="flickr_next"></div>');
-					$("body").append('<div id="flickr_prev"></div>');
-
-					// Set navigation click events
-					$("#flickr_next").click(function() {
-						if (settings.currentIndex < (settings.imgArray.length - 1)) {
-							settings.currentIndex = settings.currentIndex + 1;
-							flickrhelpers.navImg(settings.currentIndex);
-						}
-					});
-
-					$("#flickr_prev").click(function() {
-						if (settings.currentIndex > 0) {
-							settings.currentIndex = settings.currentIndex - 1;
-							flickrhelpers.navImg(settings.currentIndex);
-						}
-					});
 
 					// Get the position of the element Flickr jqfobj will be loaded into
 					settings.x = element.offset().left;
@@ -250,22 +248,14 @@ var flickrhelpers = null;
 			var rX = settings.x + element.width();
 			if (((settings.mY > settings.y) && (settings.mY < bY)) && ((settings.mX > settings.x) && (settings.mX < rX))) {
 				if (settings.mX < settings.c) {
-					$("#flickr_next").css("display","none");
-					$("#flickr_prev").css("display","block");
-					$("#flickr_prev").css("left",settings.mX-20 + "px");
-					$("#flickr_prev").css("top",settings.mY-10 + "px");
+					element.css("cursor","w-resize");
 				} else if (settings.mX > settings.c) {
-					$("#flickr_prev").css("display","none");
-					$("#flickr_next").css("display","block");
-					$("#flickr_next").css("left",settings.mX-10 + "px");
-					$("#flickr_next").css("top",settings.mY-10 + "px");
+					element.css("cursor","e-resize");
 				} else {
-					$("#flickr_prev").css("display","none");
-					$("#flickr_next").css("display","none");
+					element.css("cursor","pointer");
 				}
 			} else {
-				$("#flickr_prev").css("display","none");
-				$("#flickr_next").css("display","none");
+			    element.css("cursor","pointer");
 			}
 		});
 
