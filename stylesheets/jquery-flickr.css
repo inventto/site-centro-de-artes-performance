@@ -38,14 +38,14 @@
 	text-align: left;
 }
 #flickr_div {
-    width: 990px;
-    min-height: 580px;
+    width: 700px;
+    min-height:480px;
     margin: auto;
     margin-top: 15px;
     text-align: center; /* important */
 }
 #flickr_div img {
-    width: 990px;
+    width: 700px;
 }
 #flickr_countr_count {
     width: 600px;

@@ -62,11 +62,21 @@ body{
     margin: 0 5px
 }
 .menu ul li ul {
-    padding-top: 10px;
-    margin-left: -50px;
+    margin-top: 5px;
+    padding: 10px 0;
     position: absolute;
     display: none;
     z-index: 1;
+    width: 210px;
+}
+#top .menu ul li ul {
+    -moz-box-shadow: inset 0px -10px 18px #28166E;
+    -webkit-box-shadow: inset 0px -10px 18px #28166E;
+    box-shadow: inset 0px -10px 18px #28166E;
+    background-color:#0093DD;
+    -moz-border-radius: 10px;
+    -webkit-border-radius:10px;
+    border-radius:10px;
 }
 #footer .menu ul li ul{
     position: absolute;
@@ -74,6 +84,7 @@ body{
 }
 #footer .menu ul li:hover ul {
     display: block;
+    text-align: top;
 }
 .menu ul li:hover ul {
     display: block;
@@ -83,13 +94,22 @@ body{
     float: none;
     height: 30px;
 }
-#top .menu ul li a {
+#top .menu > ul > li > a {
     text-decoration: none;
     color: white;
     -moz-box-shadow: inset 0px -10px 18px #28166E;
     -webkit-box-shadow: inset 0px -10px 18px #28166E;
     box-shadow: inset 0px -10px 18px #28166E;
     background-color:#0093DD;
+    padding: 5px 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius:10px;
+    border-radius:10px;
+}
+#top .menu ul li ul li a {
+    text-decoration: none;
+    display: block;
+    color: white;
     padding: 5px 10px;
     -moz-border-radius: 10px;
     -webkit-border-radius:10px;

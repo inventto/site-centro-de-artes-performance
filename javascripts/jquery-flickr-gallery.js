@@ -105,12 +105,27 @@ var flickrhelpers = null;
 
 					// Append the Thumbs holder to the body
 					element.after('<div id="flickr_thumbs"></div>');
+					$("#flickr_thumbs").append('<div id="flickr_thumbs_in"></div>');
 					$("#flickr_thumbs").css("background-color",element.css("background-color"));
-					$("#flickr_thumbs").css("width",element.width());
+					$("#flickr_thumbs").css("width",element.width()); //
+					//$("#flickr_thumbs").css("width","100px"); //element.width()
+                    $("#flickr_thumbs").css({overflow: 'hidden'});
 
-					$("#flickr_thumbs").html(thumbHTML);
+					$("#flickr_thumbs_in").html(thumbHTML);
+					//$("#flickr_thumbs_in").css("width","200px"); //element.width()
+/*
+                    $('#flickr_thumbs').mousemove(function(e){
+                        var div = $("#flickr_thumbs_in");
+                        var lastLi = div.find('img:last-child');
+                        var divWidth = div.width();
+                        var ulWidth = lastLi[0].offsetLeft + lastLi.outerWidth() + 15;
 
-					// When data is set, load first image.
+                        var left = (e.pageX - div.offset().left) * (ulWidth-divWidth) / divWidth;
+                        $("#flickr_thumbs").scrollLeft(left);
+                    });
+*/
+
+                    // When data is set, load first image.
 					flickrhelpers.navImg(0);
 
 				});
