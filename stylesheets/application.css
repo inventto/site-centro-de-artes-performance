@@ -140,6 +140,22 @@ body{
     -webkit-box-shadow: 0px 10px 20px #000000;
     box-shadow: 0px 10px 20px #000000;
 }
+#container #flickr_sets img{
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius:10px;
+   transform: rotate(10deg);
+    -webkit-transform: rotate(10deg);
+    -moz-transform: rotate(10deg);
+    -o-transform: rotate(10deg);
+    -ms-transform: rotate(10deg);
+}
+#container #flickr_sets .time-ago{
+    font: 84% vedana;
+    color: #6E6E6E;
+    min-height: 13px;
+    white-space: nowrap;
+}
 #container #flickr_sets a {
     text-decoration: none;
 }

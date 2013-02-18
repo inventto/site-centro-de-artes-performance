@@ -25,7 +25,7 @@
                  for (i=0; i<length; i++) {
                     photoset = flickrData.photosets.photoset[i];
                     args = "flickrSet=" + photoset.id;
-                    sets.append("<div id='album_" + photoset.id + "'><a href='?" + args + "' title='" + photoset.description._content + "'>" + photoset.title._content + " </a></div>");
+                    sets.append("<div id='album_" + photoset.id + "'><a href='fotos.html?" + args + "' title='" + photoset.description._content + "'>" + photoset.title._content + " </a></div>");
                     loadFlickrSet(photoset.id);
                  }
             });
@@ -35,7 +35,7 @@
                         last_photo = flickrData.photoset.photo.length - 1;
     					var thumbURL = 'http://farm' + flickrData.photoset.photo[last_photo].farm + '.' + 'static.flickr.com/' + flickrData.photoset.photo[last_photo].server + '/' + flickrData.photoset.photo[last_photo].id + '_' + flickrData.photoset.photo[last_photo].secret + '_s.jpg'
                         time_ago = jQuery.timeago(new Date(flickrData.photoset.photo[last_photo].dateupload * 1000));
-	    				var thumbHTML = '<img src=' + thumbURL + ' width="75" height="75" title="' + flickrData.photoset.photo[last_photo].title + '"> ' + time_ago;
+                        var thumbHTML = '<img src=' + thumbURL + ' width="75" height="75" title="' + flickrData.photoset.photo[last_photo].title + '"><span class="time-ago"> ' + time_ago + '</span>';
                         $("#album_" + flickrSet).append(thumbHTML);
                 });
             }
