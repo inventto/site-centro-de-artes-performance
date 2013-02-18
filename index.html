@@ -25,7 +25,7 @@
                  for (i=0; i<length; i++) {
                     photoset = flickrData.photosets.photoset[i];
                     args = "flickrSet=" + photoset.id;
-                    sets.append("<div id='album_" + photoset.id + "'><a href='fotos.html?" + args + "' title='" + photoset.description._content + "'>" + photoset.title._content + " </a></div>");
+                    sets.append("<div id='album_" + photoset.id + "'><a href='fotos.html?last=true&" + args + "' title='" + photoset.description._content + "'>" + photoset.title._content + " </a></div>");
                     loadFlickrSet(photoset.id);
                  }
             });

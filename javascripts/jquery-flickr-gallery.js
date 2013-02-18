@@ -111,7 +111,11 @@ var flickrhelpers = null;
 					$("#flickr_thumbs").html(thumbHTML);
 
 					// When data is set, load first image.
-					flickrhelpers.navImg(0);
+                    if (settings.last === null){
+	    				flickrhelpers.navImg(0);
+                    } else {
+	    				flickrhelpers.navImg(length - 1);
+                    }
 
 				});
 
@@ -184,6 +188,7 @@ var flickrhelpers = null;
 			"flickrUser" : null,
 			"flickrSet" : null,
 			"flickrKey" : null,
+            "last" : null,
 			"x" : 0, // Object X
 			"y" : 0, // Object Y
 			"c" : 0, // Object center point
