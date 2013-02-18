@@ -107,23 +107,23 @@ var flickrhelpers = null;
 					element.after('<div id="flickr_thumbs"></div>');
 					$("#flickr_thumbs").append('<div id="flickr_thumbs_in"></div>');
 					$("#flickr_thumbs").css("background-color",element.css("background-color"));
-					$("#flickr_thumbs").css("width",element.width()); //
-					//$("#flickr_thumbs").css("width","100px"); //element.width()
+					$("#flickr_thumbs").css("width",element.width());
                     $("#flickr_thumbs").css({overflow: 'hidden'});
 
 					$("#flickr_thumbs_in").html(thumbHTML);
-					//$("#flickr_thumbs_in").css("width","200px"); //element.width()
-/*
+					$("#flickr_thumbs_in").css("white-space","nowrap"); //element.width()
+
                     $('#flickr_thumbs').mousemove(function(e){
-                        var div = $("#flickr_thumbs_in");
-                        var lastLi = div.find('img:last-child');
+                        var div = $("#flickr_thumbs");
+                        var ul = $("#flickr_thumbs_in");
+                        var lastLi = ul.find('img:last-child');
                         var divWidth = div.width();
-                        var ulWidth = lastLi[0].offsetLeft + lastLi.outerWidth() + 15;
+                        var ulWidth = lastLi[0].offsetLeft + lastLi.outerWidth();
 
                         var left = (e.pageX - div.offset().left) * (ulWidth-divWidth) / divWidth;
-                        $("#flickr_thumbs").scrollLeft(left);
+                        div.scrollLeft(left);
                     });
-*/
+
 
 					// When data is set, load first image.
                     if (settings.last === null){
