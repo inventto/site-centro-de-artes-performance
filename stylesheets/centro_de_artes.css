@@ -1,6 +1,15 @@
+.fotos img {
+  width: 350px;
+}
 .texto{
     width: 450px;
     background-color: rgba(0,0,0,0.1);
     padding: 15px;
     border-radius: 30px;
+}
+p strong{
+    font-size: 25px;
+}
+.centro strong{
+    font-size: 15px;
 }
