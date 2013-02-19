@@ -177,14 +177,16 @@ var flickrhelpers = null;
 						$("#thsImage").css("width",Math.round(element.height() * (1/fRatio)));
 					}
 
-					if (element.outerHeight() > $("#thsImage").outerHeight()) {
-						var thisHalfImage = $("#thsImage").outerHeight()/2;
-						var thisTopOffset = (element.outerHeight()/2) - thisHalfImage;
-						$("#thsImage").css("margin-top",thisTopOffset+"px");
-					}
+          element.animate({height: $("#thsImage").height()}, 300, function(){
+            if (element.outerHeight() > $("#thsImage").outerHeight()) {
+              var thisHalfImage = $("#thsImage").outerHeight()/2;
+              var thisTopOffset = (element.outerHeight()/2) - thisHalfImage;
+              $("#thsImage").animate({marginTop: thisTopOffset+"px"}, 200);
+            }
+          });
 
 					var current_count = currentIndex + 1;
-					$("#flickr_count").html("Foto " + current_count + " of " + settings.imgArray.length);
+					$("#flickr_count").html("Foto " + current_count + " / " + settings.imgArray.length);
 					if (settings.titleArray[currentIndex] != "") {
 						$("#flickr_count").append(" : " + settings.titleArray[currentIndex]);
 					}
