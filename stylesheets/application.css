@@ -161,6 +161,9 @@ body{
 }
 #container #flickr_sets a {
     text-decoration: none;
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+    padding: 5px;
 }
 #container #flickr_sets a:hover {
     text-decoration: underline;
@@ -276,4 +279,27 @@ i{
 }
 #nivel-iniciante {
     font-size: 30px;
+}
+#agenda p {
+    text-align: left;
+    white-space: nowrap;
+}
+#agenda {
+    width: 305px;
+    margin: 0 auto;
+}
+#index-albuns {
+    float: left;
+    margin-left: 80px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 30px 30px 30px 30px;
+    padding: 15px;
+}
+#index-agenda {
+    float: right;
+    margin-right: 80px;
+    text-align: left;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 30px 30px 30px 30px;
+    padding: 15px;
 }
