@@ -1,6 +1,3 @@
-<script type="text/javascript">
-    $('a[href*=' + window.location.pathname.split("/").reverse()[0] + ']').addClass('selecionado');
-</script>
 <ul>
     <li><a href="index.html">Home</a></li>
     <li><a href="centro_de_artes.html">Centro de Artes</a></li>
@@ -9,7 +6,10 @@
         <ul class="cursos">
         </ul>
         <script type="text/javascript">
-  $(".cursos").load("_cursos.html");
+          $(".cursos").load("_cursos.html",
+                  function (responseText, textStatus, XMLHttpRequest) {
+                    $('a[href*=' + window.location.pathname.split("/").reverse()[0] + ']').addClass('selecionado');
+                  });
         </script>
     </li>
     <li><a href="agenda.html">Agenda</a></li>
