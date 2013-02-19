@@ -23,12 +23,19 @@
                             var endTime = data.endTime.replace(/T.*/,"").split("-").reverse().join("/");
                             var title = agenda.feed.entry[i].title.$t;
                             var periodo = startTime
+                            color = "#000";
+                            if (title.search(/prova/i) >= 0) {
+                              color = "#ff0080";
+                            }
+                            if (title.search(/(in.cio|final|f.rias|volta)/i) >= 0) {
+                              color = "red";
+                            }
                             if (startTime == endTime) {
-                              $('#agenda').append("<p>" + startTime + " - <strong>" + title + "</strong></p>");
+                              $('#agenda').append("<p style='color:"+color+"'>" + startTime + " - <strong>" + title + "</strong></p>");
                             } else if (startTime.split("/")[1] == endTime.split("/")[1] && startTime.split("/")[2] == endTime.split("/")[2]) {
-                              $('#agenda').append("<p>" + startTime.split("/")[0] + " a " + endTime + " - <strong>" + title + "</strong></p>");
+                              $('#agenda').append("<p style='color:"+color+"'>" + startTime.split("/")[0] + " a " + endTime + " - <strong>" + title + "</strong></p>");
                             } else {
-                              $('#agenda').append("<p>" + startTime + " a " + endTime + " - <strong>" + title + "</strong></p>");
+                              $('#agenda').append("<p style='color:"+color+"'>" + startTime + " a " + endTime + " - <strong>" + title + "</strong></p>");
                             }
                           }
 
