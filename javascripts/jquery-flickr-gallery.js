@@ -110,17 +110,18 @@ var flickrhelpers = null;
 
 					$("#flickr_thumbs_in").html(thumbHTML);
 					$("#flickr_thumbs_in").css("white-space","nowrap"); //element.width()
+          $("#flickr_thumbs_in").css("text-align","center"); //element.width()
 
-                    $('#flickr_thumbs').mousemove(function(e){
-                        var div = $("#flickr_thumbs");
-                        var ul = $("#flickr_thumbs_in");
-                        var lastLi = ul.find('img:last-child');
-                        var divWidth = div.width();
-                        var ulWidth = lastLi[0].offsetLeft + lastLi.outerWidth();
+          $('#flickr_thumbs').mousemove(function(e){
+            var div = $("#flickr_thumbs");
+            var ul = $("#flickr_thumbs_in");
+            var lastLi = ul.find('img:last-child');
+            var divWidth = div.width();
+            var ulWidth = lastLi[0].offsetLeft + lastLi.outerWidth();
 
-                        var left = (e.pageX - div.offset().left) * (ulWidth-divWidth) / divWidth;
-                        div.scrollLeft(left);
-                    });
+            var left = (e.pageX - div.offset().left) * (ulWidth-divWidth) / divWidth / 2;
+            div.scrollLeft(left);
+          });
 
 
 					// When data is set, load first image.
