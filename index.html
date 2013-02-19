@@ -12,11 +12,7 @@
                 $(".menu").load("_menu.html");
             });
 
-            jQuery(document).ready(function() {
-                 $("abbr.timeago").timeago();
-            });
-
-            var flickrUser = '93217661@N06', flickrKey = '326464b090f1fac8f2280140544a1d22', flickrSet = '72157632768213913';
+            var flickrUser = '93365702@N06', flickrKey = '326464b090f1fac8f2280140544a1d22';
             $.getJSON("http://api.flickr.com/services/rest/?format=json&method=flickr.photosets.getList&user_id=" + flickrUser + "&api_key=" + flickrKey + "&jsoncallback=?", function(flickrData){
                  var element = $('#albuns');
                  element.append('<div id="flickr_sets"></div>');
@@ -26,19 +22,42 @@
                     photoset = flickrData.photosets.photoset[i];
                     args = "flickrSet=" + photoset.id;
                     sets.append("<div id='album_" + photoset.id + "'><a href='fotos.html?last=true&" + args + "' title='" + photoset.description._content + "'>" + photoset.title._content + " </a></div>");
-                    loadFlickrSet(photoset.id);
+                    loadFlickrSet(photoset.id, i > 0);
                  }
+                 $("abbr.timeago").timeago();
             });
-            loadFlickrSet = function(flickrSet){
+            loadFlickrSet = function(flickrSet, adjustMargin){
                 $.getJSON("http://api.flickr.com/services/rest/?format=json&method=flickr.photosets.getPhotos&photoset_id=" + flickrSet + "&extras=date_upload&api_key=" + flickrKey + "&jsoncallback=?", function(flickrData){
                         element = $('#flickr_sets');
                         last_photo = flickrData.photoset.photo.length - 1;
     					var thumbURL = 'http://farm' + flickrData.photoset.photo[last_photo].farm + '.' + 'static.flickr.com/' + flickrData.photoset.photo[last_photo].server + '/' + flickrData.photoset.photo[last_photo].id + '_' + flickrData.photoset.photo[last_photo].secret + '_s.jpg'
                         time_ago = jQuery.timeago(new Date(flickrData.photoset.photo[last_photo].dateupload * 1000));
-                        var thumbHTML = '<img src=' + thumbURL + ' width="75" height="75" title="' + flickrData.photoset.photo[last_photo].title + '"><span class="time-ago"> ' + time_ago + '</span>';
-                        $("#album_" + flickrSet).append(thumbHTML);
+
+                        var margin = adjustMargin ? '24px 10px -24px' : '0px 10px -24px';
+                        var thumbHTML = '<img src=' + thumbURL + ' width="75" height="75" title="' + flickrData.photoset.photo[last_photo].title + '" style="margin: ' + margin + '">';
+                        $("#album_" + flickrSet).prepend(thumbHTML);
+                        $("#album_" + flickrSet).append(' <span class="time-ago">(' + time_ago + ')</span>');
                 });
             }
+            $.getJSON("http://www.google.com/calendar/feeds/performancefb@hotmail.com/public/full?alt=json-in-script&callback=?&orderby=starttime&max-results=5&singleevents=true&sortorder=ascending&futureevents=true",
+                      function(agenda){
+                        var length = agenda.feed.entry.length;
+                        for (i = 0; i < length; i++) {
+                          var data = agenda.feed.entry[i].gd$when[0];
+                          var startTime = data.startTime.replace(/T.*/,"").split("-").reverse().join("/");
+                          var endTime = data.endTime.replace(/T.*/,"").split("-").reverse().join("/");
+                          var title = agenda.feed.entry[i].title.$t;
+                          var periodo = startTime
+                          if (startTime == endTime) {
+                            $('#agenda').append("<p>" + startTime + " - <strong>" + title + "</strong></p>");
+                          } else if (startTime.split("/")[1] == endTime.split("/")[1] && startTime.split("/")[2] == endTime.split("/")[2]) {
+                            $('#agenda').append("<p>" + startTime.split("/")[0] + " a " + endTime + " - <strong>" + title + "</strong></p>");
+                          } else {
+                            $('#agenda').append("<p>" + startTime + " a " + endTime + " - <strong>" + title + "</strong></p>");
+                          }
+
+                        }
+                      });
         </script>
     </head>
     <body>
@@ -53,6 +72,7 @@
         </div>
         <div id="container">
             <div id="albuns"><h2>Últimas atualizações dos álbuns:</h2></div>
+            <div id="agenda"><h2>Próximos eventos da agenda:</h2></div>
         </div>
         <div id="footer">
             <div class="menu">
