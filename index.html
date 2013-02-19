@@ -14,7 +14,7 @@
 
             var flickrUser = '93365702@N06', flickrKey = '326464b090f1fac8f2280140544a1d22';
             $.getJSON("http://api.flickr.com/services/rest/?format=json&method=flickr.photosets.getList&user_id=" + flickrUser + "&api_key=" + flickrKey + "&jsoncallback=?", function(flickrData){
-                 var element = $('#albuns');
+                 var element = $('#index-albuns');
                  element.append('<div id="flickr_sets"></div>');
                  var length = flickrData.photosets.total;
                  var sets = $("#flickr_sets");
@@ -56,11 +56,11 @@
                             color = "red";
                           }
                           if (startTime == endTime) {
-                            $('#agenda').append("<p style='color:"+color+"'>" + startTime + " - <strong>" + title + "</strong></p>");
+                            $('#index-agenda').append("<p style='color:"+color+"'>" + startTime + " - <strong>" + title + "</strong></p>");
                           } else if (startTime.split("/")[1] == endTime.split("/")[1] && startTime.split("/")[2] == endTime.split("/")[2]) {
-                            $('#agenda').append("<p style='color:"+color+"'>" + startTime.split("/")[0] + " a " + endTime + " - <strong>" + title + "</strong></p>");
+                            $('#index-agenda').append("<p style='color:"+color+"'>" + startTime.split("/")[0] + " a " + endTime + " - <strong>" + title + "</strong></p>");
                           } else {
-                            $('#agenda').append("<p style='color:"+color+"'>" + startTime + " a " + endTime + " - <strong>" + title + "</strong></p>");
+                            $('#index-agenda').append("<p style='color:"+color+"'>" + startTime + " a " + endTime + " - <strong>" + title + "</strong></p>");
                           }
 
                         }
@@ -71,15 +71,16 @@
         <div id="top_wrapper">
             <div id="top">
                 <div id="logo">
-                    <img src="images/logo.png" title="Centro de Artes Performance"/>
+                    <a href="index.html"><img src="images/logo.png" title="Centro de Artes Performance"/></a>
                 </div>
                 <div class="menu">
                 </div>
             </div>
         </div>
         <div id="container">
-            <div id="albuns"><h2>Últimas atualizações dos álbuns:</h2></div>
-            <div id="agenda"><h2>Próximos eventos da agenda:</h2></div>
+            <div id="index-albuns"><h2>Últimas fotos:</h2></div>
+            <div id="index-agenda"><h2>Datas Importantes:</h2></div>
+            <i></i>
         </div>
         <div id="footer">
             <div class="menu">
