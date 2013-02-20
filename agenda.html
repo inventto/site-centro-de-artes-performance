@@ -12,8 +12,12 @@
                 $(".menu").load("_menu.html");
             });
 
-            $.getJSON("http://www.google.com/calendar/feeds/performancefb@hotmail.com/public/full?alt=json-in-script&callback=?&orderby=starttime&max-results=500&singleevents=true&sortorder=ascending&futureevents=false",
+            $.getJSON("http://www.google.com/calendar/feeds/ccd1haefo2k9p4475lho50369k%40group.calendar.google.com/private-6b1ba3addedbce4e1a8b626c8f4c2f65/full?alt=json-in-script&callback=?&orderby=endtime&max-results=500&singleevents=true&sortorder=descending&futureevents=false",
                       function(agenda){
+                      if (agenda.feed.entry == undefined){
+                        $("#agenda").append("Nada cadastrado.");
+                        return;
+                      }
                         var length = agenda.feed.entry.length;
                         var year = new Date().getYear() + 1900;
                         for (i = 0; i < length; i++) {

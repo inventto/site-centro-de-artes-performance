@@ -40,8 +40,13 @@
                         $("#album_" + flickrSet).append(' <span class="time-ago">(' + time_ago + ')</span>');
                 });
             }
-            $.getJSON("http://www.google.com/calendar/feeds/performancefb@hotmail.com/public/full?alt=json-in-script&callback=?&orderby=endtime&max-results=5&singleevents=true&sortorder=ascending&futureevents=true",
+
+            $.getJSON("http://www.google.com/calendar/feeds/ccd1haefo2k9p4475lho50369k%40group.calendar.google.com/private-6b1ba3addedbce4e1a8b626c8f4c2f65/full?alt=json-in-script&callback=?&orderby=endtime&max-results=5&singleevents=true&sortorder=descending&futureevents=true",
                       function(agenda){
+                        if (agenda.feed.entry == undefined) {
+                          $("#index-agenda").html("");
+                          return;
+                        }
                         var length = agenda.feed.entry.length;
                         for (i = 0; i < length; i++) {
                           var data = agenda.feed.entry[i].gd$when[0];
@@ -68,6 +73,10 @@
                       });
             $.getJSON("http://www.google.com/calendar/feeds/ac1c88ki1njm8pflpg5bn74dao%40group.calendar.google.com/private-f3f2cd956d241460bc96d732f7fe31d6/full?alt=json-in-script&callback=?&orderby=updated&max-results=5&singleevents=true&sortorder=ascending&futureevents=true",
                       function(agenda){
+                        if (agenda.feed.entry == undefined) {
+                          $("#index-alunos").html("");
+                          return;
+                        }
                         length = agenda.feed.entry.length;
                         for (i = 0; i < length; i++) {
                           where = agenda.feed.entry[i].gd$where[0].valueString;

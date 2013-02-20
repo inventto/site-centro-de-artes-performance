@@ -11,27 +11,35 @@
             $(document).ready(function(){
                     $(".menu").load("_menu.html");
             });
-            $.getJSON("http://www.google.com/calendar/feeds/ac1c88ki1njm8pflpg5bn74dao%40group.calendar.google.com/private-f3f2cd956d241460bc96d732f7fe31d6/full?alt=json-in-script&callback=?&orderby=updated&max-results=500&singleevents=true&sortorder=ascending&futureevents=false",
+            $.getJSON("http://www.google.com/calendar/feeds/ac1c88ki1njm8pflpg5bn74dao%40group.calendar.google.com/private-f3f2cd956d241460bc96d732f7fe31d6/full?alt=json-in-script&callback=?&orderby=updated&max-results=500&singleevents=true&sortorder=descending&futureevents=false",
                       function(agenda){
+                        if (agenda.feed.entry == undefined){
+                            return;
+                        }
                         length = agenda.feed.entry.length;
+                        year = new Date().getYear() + 1900;
                         for (i = 0; i < length; i++) {
-                          where = agenda.feed.entry[i].gd$where[0].valueString;
-                          if (where != ""){
-                            where = "<strong>Local:</strong> " + where;
-                          }
-                          data = agenda.feed.entry[i].gd$when[0];
-                          content = agenda.feed.entry[i].content.$t;
-                          title = agenda.feed.entry[i].title.$t;
-                          startTime = data.startTime.replace(/T.*/,"").split("-").reverse().join("/");
-                          endTime = data.endTime.replace(/T.*/,"").split("-").reverse().join("/");
-                          color = "#000";
-                          if (startTime == endTime) {
-                            $('.texto').append("<p style='color:" + color + "'>" + startTime + " - <strong>" + title + "</strong></p>" + content + "<p>"+where+"</p><hr/>");
-                          } else if (startTime.split("/")[1] == endTime.split("/")[1] && startTime.split("/")[2] == endTime.split("/")[2]) {
-                            $('.texto').append("<p style='color:" + color + "'>" + startTime.split("/")[0] + " a " + endTime + " - <strong>" + title + "</strong></p>" + content + "<p>" + where +"</p><hr/>");
-                          } else {
-                            $('.texto').append("<p style='color:" + color + "'>" + startTime + " a " + endTime + " - <strong>" + title + "</strong></p>" + content + "<p>" + where + "</p><hr/>");
-                          }
+                            data = agenda.feed.entry[i].gd$when[0];
+                            y = data.startTime.split("-")[0];
+                            if (y == year) {
+                               where = agenda.feed.entry[i].gd$where[0].valueString;
+                                if (where != ""){
+                                    where = "<strong>Local:</strong> " + where;
+                                }
+                                content = agenda.feed.entry[i].content.$t;
+                                content = content.replace("\n","<br/>");
+                                title = agenda.feed.entry[i].title.$t;
+                                startTime = data.startTime.replace(/T.*/,"").split("-").reverse().join("/");
+                                endTime = data.endTime.replace(/T.*/,"").split("-").reverse().join("/");
+                                color = "#000";
+                                if (startTime == endTime) {
+                                $('.texto').append("<p style='color:" + color + "'><h2><strong>" + title + "</strong></h2>" + startTime + "</p>" + content + "<p>" + where + "</p><hr/>");
+                                } else if (startTime.split("/")[1] == endTime.split("/")[1] && startTime.split("/")[2] == endTime.split("/")[2]) {
+                                $('.texto').append("<p style='color:" + color + "'><h2><strong>" + title + "</strong></h2>" + startTime.split("/")[0] + " a " + endTime + "</p>" + content + "<p>" + where +"</p><hr/>");
+                                } else {
+                                    $('.texto').append("<p style='color:" + color + "'><h2><strong>" + title + "</strong></h2>" + startTime + " a " + endTime + "</p>" + content + "<p>" + where + "</p><hr/>");
+                                }
+                            }
                         }
                       });
         </script>
