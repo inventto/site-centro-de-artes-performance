@@ -39,7 +39,7 @@
                         $("#album_" + flickrSet).append(' <span class="time-ago">(' + time_ago + ')</span>');
                 });
             }
-            $.getJSON("http://www.google.com/calendar/feeds/performancefb@hotmail.com/public/full?alt=json-in-script&callback=?&orderby=starttime&max-results=5&singleevents=true&sortorder=ascending&futureevents=true",
+            $.getJSON("http://www.google.com/calendar/feeds/performancefb@hotmail.com/public/full?alt=json-in-script&callback=?&orderby=endtime&max-results=5&singleevents=true&sortorder=ascending&futureevents=true",
                       function(agenda){
                         var length = agenda.feed.entry.length;
                         for (i = 0; i < length; i++) {
@@ -65,6 +65,29 @@
 
                         }
                       });
+            $.getJSON("http://www.google.com/calendar/feeds/ac1c88ki1njm8pflpg5bn74dao%40group.calendar.google.com/private-f3f2cd956d241460bc96d732f7fe31d6/full?alt=json-in-script&callback=?&orderby=updated&max-results=5&singleevents=true&sortorder=ascending&futureevents=true",
+                      function(agenda){
+                        length = agenda.feed.entry.length;
+                        for (i = 0; i < length; i++) {
+                          where = agenda.feed.entry[i].gd$where[0].valueString;
+                          if (where != ""){
+                            where = "<strong>Local:</strong> " + where;
+                          }
+                          data = agenda.feed.entry[i].gd$when[0];
+                          content = agenda.feed.entry[i].content.$t;
+                          title = agenda.feed.entry[i].title.$t;
+                          startTime = data.startTime.replace(/T.*/,"").split("-").reverse().join("/");
+                          endTime = data.endTime.replace(/T.*/,"").split("-").reverse().join("/");
+                          color = "#000";
+                          if (startTime == endTime) {
+                            $('#index-alunos').append("<p style='color:" + color + "'>" + startTime + " - <strong>" + title + "</strong></p>" + content + "<p>"+where+"</p><hr/>");
+                          } else if (startTime.split("/")[1] == endTime.split("/")[1] && startTime.split("/")[2] == endTime.split("/")[2]) {
+                            $('#index-alunos').append("<p style='color:" + color + "'>" + startTime.split("/")[0] + " a " + endTime + " - <strong>" + title + "</strong></p>" + content + "<p>" + where +"</p><hr/>");
+                          } else {
+                            $('#index-alunos').append("<p style='color:" + color + "'>" + startTime + " a " + endTime + " - <strong>" + title + "</strong></p>" + content + "<p>" + where + "</p><hr/>");
+                          }
+                        }
+                      });
         </script>
     </head>
     <body>
@@ -79,7 +102,8 @@
         </div>
         <div id="container">
             <div id="index-albuns"><h2>Últimas fotos:</h2></div>
-            <div id="index-agenda"><h2>Datas Importantes:</h2></div>
+            <div id="index-agenda"><h2>Agenda:</h2></div>
+            <div id="index-alunos"><h2>Área do Aluno:</h2></div>
             <i></i>
         </div>
         <div id="footer">
