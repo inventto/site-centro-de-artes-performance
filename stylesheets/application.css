@@ -311,3 +311,36 @@ i{
     margin: 0 auto;
     width: 500px;
 }
+#legenda{
+    height: 20px;
+    text-align: left;
+    width: 755px;
+    margin: 0 auto;
+}
+#legenda div{
+    float: left;
+}
+#legenda span{
+    margin-left: 10px;
+    width: 17px;
+    height: 17px;
+    float: left;
+}
+#ballet-classico{
+    background: #2952A3;
+}
+#ballet-infantil{
+    background: #E67399;
+}
+#alongamento{
+    background: #603f99;
+}
+#danca-adulto{
+    background: #4CB052;
+}
+#hip-hop{
+    background: #737373;
+}
+#jazz{
+    background: #D96666;
+}
