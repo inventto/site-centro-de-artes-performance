@@ -12,7 +12,7 @@
                 $(".menu").load("_menu.html");
             });
 
-            $.getJSON("https://www.google.com/calendar/feeds/performancefb%40hotmail.com/private-9a607467878beac5e27bfa591212c1c1/full?alt=json-in-script&callback=?&orderby=endtime&max-results=500&singleevents=true&sortorder=descending&futureevents=false",
+            $.getJSON("https://www.google.com/calendar/feeds/performancefb%40hotmail.com/private-9a607467878beac5e27bfa591212c1c1/full?alt=json-in-script&callback=?&orderby=starttime&max-results=500&singleevents=true&sortorder=ascending&futureevents=false",
                       function(agenda){
                       if (agenda.feed.entry == undefined){
                         $("#agenda").append("Nada cadastrado.");
