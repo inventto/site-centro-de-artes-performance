@@ -41,7 +41,7 @@
                 });
             }
 
-            $.getJSON("https://www.google.com/calendar/feeds/performancefb%40hotmail.com/private-9a607467878beac5e27bfa591212c1c1/full?alt=json-in-script&callback=?&orderby=endtime&max-results=5&singleevents=true&sortorder=descending&futureevents=true",
+            $.getJSON("https://www.google.com/calendar/feeds/performancefb%40hotmail.com/private-9a607467878beac5e27bfa591212c1c1/full?alt=json-in-script&callback=?&orderby=starttime&max-results=5&singleevents=true&sortorder=ascending&futureevents=true",
                       function(agenda){
                         if (agenda.feed.entry == undefined) {
                           $("#index-agenda").html("");
@@ -71,7 +71,7 @@
 
                         }
                       });
-            $.getJSON("http://www.google.com/calendar/feeds/ac1c88ki1njm8pflpg5bn74dao%40group.calendar.google.com/private-f3f2cd956d241460bc96d732f7fe31d6/full?alt=json-in-script&callback=?&orderby=updated&max-results=5&singleevents=true&sortorder=ascending&futureevents=true",
+            $.getJSON("https://www.google.com/calendar/feeds/3sv3aefg65slkecmgb1omfirc8%40group.calendar.google.com/private-a1159206bcc1fae12b66e2f602484b96/full?alt=json-in-script&callback=?&orderby=updated&max-results=5&singleevents=true&sortorder=ascending&futureevents=true",
                       function(agenda){
                         if (agenda.feed.entry == undefined) {
                           $("#index-alunos").html("");
@@ -113,7 +113,9 @@
         <div id="container">
             <div id="index-albuns"><h2>Últimas fotos:</h2></div>
             <div id="index-agenda"><h2>Agenda:</h2></div>
+            <i></i>
             <div id="index-alunos"><h2>Área do Aluno:</h2></div>
+             <iframe src="https://www.google.com/calendar/embed?showPrint=0&amp;showTz=0&amp;mode=WEEK&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=4ninva7nrt38rgdjrge6jhide4%40group.calendar.google.com&amp;color=%2323164E&amp;src=9re3frtad5s54se6vvc7d5qh3g%40group.calendar.google.com&amp;color=%232952A3&amp;src=ac1c88ki1njm8pflpg5bn74dao%40group.calendar.google.com&amp;color=%23B1365F&amp;src=8pfmju9jcff92d8a7lsnsdpiqs%40group.calendar.google.com&amp;color=%230D7813&amp;src=laroo29tbe1vpansv7qt5rgego%40group.calendar.google.com&amp;color=%23333333&amp;src=pt2f51qcajnfbvfco9inbmg6jk%40group.calendar.google.com&amp;color=%23A32929&amp;src=3sv3aefg65slkecmgb1omfirc8%40group.calendar.google.com&amp;color=%235229A3&amp;ctz=America%2FSao_Paulo" style=" border-width:0 " width="800" height="600" frameborder="0" scrolling="no"></iframe>
             <i></i>
         </div>
         <div id="footer">
