@@ -46,15 +46,20 @@ body{
 }
 #top{
     background: right url("../images/arabesco-dir.png") no-repeat;
+    height: 198px;
 }
 #top .menu{
+    width: 1020px;
+    background: none repeat scroll 0 0 white;
+    z-index: 2;
+    padding-top: 10px;
     border-bottom: 1px solid #DDF3EB;
     height: 30px;
-    margin-top: 10px
+    margin: 0 auto;
 }
 .menu ul {
     margin: 0 auto;
-    width: 950px;
+    width: 850px;
     list-style: none;
 }
 .menu ul li {
