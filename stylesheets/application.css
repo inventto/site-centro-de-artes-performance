@@ -189,6 +189,20 @@ body{
     padding: 10px;
     text-decoration: none;
 }
+.texto ul,
+.texto ul li{
+    list-style: none;
+    display: inline;
+}
+.texto .cursos a:hover{
+    text-decoration: underline;
+}
+.texto .cursos a {
+    text-decoration: none;
+}
+.texto .cursos a:after{
+    content: ", ";
+}
 .texto{
     width: 350px;
     float: right;
