@@ -84,17 +84,17 @@
                             where = "<strong>Local:</strong> " + where;
                           }
                           data = agenda.feed.entry[i].gd$when[0];
-                          content = agenda.feed.entry[i].content.$t;
+                          //content = agenda.feed.entry[i].content.$t;
                           title = agenda.feed.entry[i].title.$t;
                           startTime = data.startTime.replace(/T.*/,"").split("-").reverse().join("/");
                           endTime = data.endTime.replace(/T.*/,"").split("-").reverse().join("/");
                           color = "#000";
                           if (startTime == endTime) {
-                            $('#index-alunos').append("<p style='color:" + color + "'>" + startTime + " - <strong>" + title + "</strong></p>" + content + "<p>"+where+"</p><hr/>");
+                          $('#index-alunos').append("<p style='color:" + color + "'>" + startTime + " - <strong><a href='alunos.html#" + title.replace(" ", "-") + "'>" + title + "</a></strong></p><p>"+where+"</p><hr/>");
                           } else if (startTime.split("/")[1] == endTime.split("/")[1] && startTime.split("/")[2] == endTime.split("/")[2]) {
-                            $('#index-alunos').append("<p style='color:" + color + "'>" + startTime.split("/")[0] + " a " + endTime + " - <strong>" + title + "</strong></p>" + content + "<p>" + where +"</p><hr/>");
+                              $('#index-alunos').append("<p style='color:" + color + "'>" + startTime.split("/")[0] + " a " + endTime + " - <strong><a href='alunos.html#" + title.replace(" ", "-") + "'>" + title + "</a></strong></p><p>" + where +"</p><hr/>");
                           } else {
-                            $('#index-alunos').append("<p style='color:" + color + "'>" + startTime + " a " + endTime + " - <strong>" + title + "</strong></p>" + content + "<p>" + where + "</p><hr/>");
+                              $('#index-alunos').append("<p style='color:" + color + "'>" + startTime + " a " + endTime + " - <strong><a href='alunos.html#" + title.replace(" ", "-") + "'>" + title + "</a></strong></p><p>" + where + "</p><hr/>");
                           }
                         }
                       });

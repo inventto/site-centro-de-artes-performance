@@ -11,7 +11,8 @@
             $(document).ready(function(){
                     $(".menu").load("_menu.html");
             });
-            $.getJSON("https://www.google.com/calendar/feeds/3sv3aefg65slkecmgb1omfirc8%40group.calendar.google.com/private-                a1159206bcc1fae12b66e2f602484b96/full?alt=json-in-script&callback=?&orderby=updated&max-results=500&singleevents=true&sortorder=descending&futureevents=false",
+
+            $.getJSON("https://www.google.com/calendar/feeds/3sv3aefg65slkecmgb1omfirc8%40group.calendar.google.com/private-a1159206bcc1fae12b66e2f602484b96/full?alt=json-in-script&callback=?&orderby=updated&max-results=500&singleevents=true&sortorder=descending&futureevents=false",
                       function(agenda){
                         if (agenda.feed.entry == undefined){
                             return;
@@ -33,13 +34,18 @@
                                 endTime = data.endTime.replace(/T.*/,"").split("-").reverse().join("/");
                                 color = "#000";
                                 if (startTime == endTime) {
-                                $('.texto').append("<p style='color:" + color + "'><h2><strong>" + title + "</strong></h2>" + startTime + "</p>" + content + "<p>" + where + "</p><hr/>");
+                                    $('.texto').append("<p style='color:" + color + "'><h2><strong><a id='"+ title.replace(" ", "-") +"'>" + title + "</a></strong></h2>" + startTime + "</p>" + content + "<p>" + where + "</p><hr/>");
                                 } else if (startTime.split("/")[1] == endTime.split("/")[1] && startTime.split("/")[2] == endTime.split("/")[2]) {
-                                $('.texto').append("<p style='color:" + color + "'><h2><strong>" + title + "</strong></h2>" + startTime.split("/")[0] + " a " + endTime + "</p>" + content + "<p>" + where +"</p><hr/>");
+                                    $('.texto').append("<p style='color:" + color + "'><h2><strong><a id='"+title.replace(" ", "-") +"'>" + title + "</a></strong></h2>" + startTime.split("/")[0] + " a " + endTime + "</p>" + content + "<p>" + where +"</p><hr/>");
                                 } else {
-                                    $('.texto').append("<p style='color:" + color + "'><h2><strong>" + title + "</strong></h2>" + startTime + " a " + endTime + "</p>" + content + "<p>" + where + "</p><hr/>");
+                                    $('.texto').append("<p style='color:" + color + "'><h2><strong><a id='"+title.replace(" ", "-") +"'>" + title + "</a></strong></h2>" + startTime + " a " + endTime + "</p>" + content + "<p>" + where + "</p><hr/>");
                                 }
                             }
+                        }
+                        if (window.location.hash.length > 0) {
+                            var target_offset = $(window.location.hash).offset();
+                            var target_top = target_offset.top;
+                            $('html, body').animate({scrollTop:target_top}, 500);
                         }
                       });
             function clique(){
