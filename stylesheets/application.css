@@ -333,7 +333,7 @@ i{
 #legenda{
     height: 20px;
     text-align: left;
-    width: 775px;
+    width: 885px;
     margin: 0 auto;
 }
 #legenda div{
@@ -341,26 +341,33 @@ i{
     margin-left: 2px;
 }
 #legenda span{
-    margin-left: 10px;
-    width: 17px;
+    margin-left: 2px;
+    width: 120px;
+    text-align: center;
+    color: white;
+    border-radius: 12px;
     height: 17px;
     float: left;
 }
-#ballet-classico{
-    background: #2952A3;
-}
-#ballet-infantil{
-    background: #E67399;
+#ballet{
+    background: #668CD9;
 }
 #alongamento{
-    background: #603f99;
+    background: #A7B828;
 }
 #danca-adulto{
-    background: #4CB052;
+    background: #E0C240;
 }
 #hip-hop{
-    background: #737373;
+    background: #E67399;
 }
 #jazz{
-    background: #D96666;
+    background: #603f99;
+}
+#ginasticas{
+    background: #737373;
+}
+#legenda #danca-ventre{
+    background: #C7561E;
+    width: 150px;
 }
