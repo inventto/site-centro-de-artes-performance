@@ -373,3 +373,10 @@ i{
     background: #C7561E;
     width: 150px;
 }
+#iframe-content{
+    width: 800px;
+    margin: 0 auto;
+}
+#horarios {
+    text-align: center;
+}
