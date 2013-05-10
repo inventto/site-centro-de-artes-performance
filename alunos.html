@@ -6,7 +6,10 @@
         <link rel="shortcut icon" href="favicon.ico" />
         <link href="stylesheets/application.css" rel="stylesheet" type="text/css" />
         <link href="stylesheets/alunos.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="stylesheets/vallenato.css" type="text/css" media="screen">
         <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+        <script type="text/javascript" src="javascripts/jquery-1.9.1.js"></script>
+        <script type="text/javascript" src="javascripts/vallenato.js"></script>
         <script type="text/javascript">
             $(document).ready(function(){
                     $(".menu").load("_menu.html");
@@ -32,16 +35,20 @@
                                 title = agenda.feed.entry[i].title.$t;
                                 startTime = data.startTime.replace(/T.*/,"").split("-").reverse().join("/");
                                 endTime = data.endTime.replace(/T.*/,"").split("-").reverse().join("/");
-                                color = "#000";
+                                //color = "#000";
+                                content = content.replace(/(http[^ ]+.(jpg|jpeg|gif|png))/mg,"<img src='\$1' style='float:left;margin:10px'/>");
                                 if (startTime == endTime) {
-                                    $('.texto').append("<p style='color:" + color + "'><h2><strong><a id='"+ title.replace(" ", "-") +"'>" + title + "</a></strong></h2>" + startTime + "</p>" + content + "<p>" + where + "</p><hr/>");
+                                    $('#accordion-container').append("<div id='" + title.replace(/ /g, "-") + "' class='accordion-header'><h2>" + startTime + " - " + title.toUpperCase() + "</h2></div><div class='accordion-content'>" + content + "<p>" + where + "</p></div>");
                                 } else if (startTime.split("/")[1] == endTime.split("/")[1] && startTime.split("/")[2] == endTime.split("/")[2]) {
-                                    $('.texto').append("<p style='color:" + color + "'><h2><strong><a id='"+title.replace(" ", "-") +"'>" + title + "</a></strong></h2>" + startTime.split("/")[0] + " a " + endTime + "</p>" + content + "<p>" + where +"</p><hr/>");
+                                    periodo = startTime.split("/")[0] + " a " + endTime
+                                    $('#accordion-container').append("<div id='" + title.replace(/ /g, "-") + "' class='accordion-header'><h2>" + periodo + " - " + title.toUpperCase() + "</h2></div><div class='accordion-content'>" + content + "<p>" + where +"</p></div>");
                                 } else {
-                                    $('.texto').append("<p style='color:" + color + "'><h2><strong><a id='"+title.replace(" ", "-") +"'>" + title + "</a></strong></h2>" + startTime + " a " + endTime + "</p>" + content + "<p>" + where + "</p><hr/>");
+                                    periodo = startTime + " a " + endTime
+                                    $('#accordion-container').append("<div id='" + title.replace(/ /g, "-") + "' class='accordion-header'><h2>" + periodo + " - " + title.toUpperCase() + "</h2></div><div class='accordion-content'>" + content + "<p>" + where + "</p><div/>");
                                 }
                             }
                         }
+                        vallenato();
                         if (window.location.hash.length > 0) {
                             var target_offset = $(window.location.hash).offset();
                             var target_top = target_offset.top;
@@ -66,9 +73,10 @@
             <div class="texto">
                 <h1><strong>Área do Aluno</strong></h1>
                 <p>Aqui você pode acompanhar as informações sobre mudanças de aulas, horários de ensaios e demais eventos que o Centro de Artes Performance realiza durante o ano.</p><hr/>
+                <div id="accordion-container"></div>
             </div>
-                <a href="#" onclick="clique();">Retrospectiva 2012</a>
-                <div id="retro"></div>
+            <div style="margin: 0 auto; width: 150px;"><a href="#" onclick="clique();">Retrospectiva 2012</a></div>
+            <div id="retro"></div>
             <i></i>
         </div>
         <div id="footer">
