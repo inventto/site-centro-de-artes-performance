@@ -182,7 +182,8 @@ h1 {
     -moz-box-shadow: 0px 0px 20px #000000;
     -webkit-box-shadow: 0px 0px 20px #000000;
     box-shadow: 0px 0px 20px #000000;
-    background: url("../images/logo_footer.png") no-repeat scroll 99% center #E5E5FF;
+/*    background: url("../images/logo_footer.png") no-repeat scroll 99% center #E5E5FF; */
+    background-color: #E5E5FF;
 }
 #footer ul li a:hover {
     text-decoration: underline;
@@ -291,6 +292,7 @@ i{
     border-radius: 30px;
     padding: 5px;
     width: 250px;
+    text-align: center;
 }
 .matriculas_abertas p{
     font-size: 15px;
