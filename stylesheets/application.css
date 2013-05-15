@@ -205,9 +205,15 @@ h1 {
     content: ", ";
 }
 .texto{
+    width: 350px;
+    float: right;
     background-color: rgba(0,0,0,0.1);
     padding: 15px;
     border-radius: 30px;
+}
+.texto.full{
+    width: auto;
+    float: none;
 }
 .esquerda {
     margin-right: 350px;

@@ -65,6 +65,7 @@
 }
 #flickr_sets {
     width: 250px;
+    float: left;
 }
 
 #flickr_sets div{
