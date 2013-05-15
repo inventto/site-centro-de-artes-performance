@@ -89,7 +89,6 @@ body{
 }
 #footer .menu ul li:hover ul {
     display: block;
-    text-align: top;
 }
 #footer ul li ul li {
     margin-top: -63px;
@@ -98,7 +97,6 @@ body{
 }
 .menu ul li:hover ul {
     display: block;
-    float: top;
 }
 .menu ul li ul li {
     float: none;
@@ -151,6 +149,7 @@ h1 {
     text-align: center;
 }
 #container #flickr_sets img{
+    float: left;
     border-radius: 10px;
     -moz-border-radius: 10px;
     -webkit-border-radius:10px;
@@ -313,7 +312,7 @@ i{
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 30px 30px 30px 30px;
     padding: 15px;
-    width; 400px;
+    width: 400px;
 }
 #index-agenda {
     float: right;
@@ -382,4 +381,7 @@ i{
 #retrospectiva{
     margin: 0 auto;
     width: 160px;
+}
+.albuns-foto{
+    margin-left: 250px;
 }

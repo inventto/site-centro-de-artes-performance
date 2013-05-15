@@ -57,12 +57,20 @@ var flickrhelpers = null;
                 if (!(settings.flickrUser === null)) {
                     $.getJSON("http://api.flickr.com/services/rest/?format=json&method=flickr.photosets.getList&user_id=" + settings.flickrUser + "&api_key=" + settings.flickrKey + "&jsoncallback=?", function(flickrData){
                         var length = flickrData.photosets.total;
-                        element.before('<div id="flickr_sets"></div>');
+                        element.parent().before('<div id="flickr_sets"></div>');
                         var sets = $("#flickr_sets");
                         for (i=0; i<length; i++) {
-                            photoset = flickrData.photosets.photoset[i];
-                            args = "flickrSet=" + photoset.id;
-                            sets.append("<a href='?" + args + "' title='" + photoset.description._content + "'>" + photoset.title._content +  " </a>");
+                            var photoset = flickrData.photosets.photoset[i];
+                            var args = "flickrSet=" + photoset.id;
+                            sets.append("<div id='"+photoset.id+"'><a href='?" + args + "' title='" + photoset.description._content + "'>" + photoset.title._content +  " </a></div>");
+                            $.getJSON("http://api.flickr.com/services/rest/?format=json&method=flickr.photosets.getPhotos&photoset_id=" + photoset.id + "&extras=date_upload&api_key=" + settings.flickrKey + "&jsoncallback=?", function(flk){
+                                console.log(flk.photoset);
+                                last_photo = flk.photoset.photo.length - 1;
+                                var thumbURL = 'http://farm' + flk.photoset.photo[last_photo].farm + '.' + 'static.flickr.com/' + flk.photoset.photo[last_photo].server + '/' + flk.photoset.photo[last_photo].id + '_' + flk.photoset.photo[last_photo].secret + '_s.jpg'
+
+                                var thumbHTML = '<img src=' + thumbURL + ' width="25" height="25" title="' + flk.photoset.photo[last_photo].title + '">';
+                                $('#'+flk.photoset.id).prepend(thumbHTML);
+                            });
                         }
                         if (settings.flickrSet === null)
                            settings.flickrSet = flickrData.photosets.photoset[0].id;
