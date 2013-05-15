@@ -64,7 +64,9 @@
     text-align: center;
 }
 #flickr_sets {
-    float: left;
     width: 250px;
+}
+
+#flickr_sets div{
     clear: both;
 }
