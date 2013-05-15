@@ -65,6 +65,13 @@
 	border-radius: 0 0 5px 5px;
     text-indent: 75px;
 }
+.accordion-content.without_content {
+    display: none !important;
+}
+.accordion-header.active-header.without_content,
+.accordion-header.inactive-header.without_content {
+    background-image: none !important;
+}
 .accordion-content p {
     font-size: 14px;
     text-align: justify;

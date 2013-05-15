@@ -11,7 +11,6 @@
         <script type="text/javascript">
             $(document).ready(function(){
                 $(".menu").load("_menu.html");
-
             });
 
             var flickrUser = '93365702@N06', flickrKey = '326464b090f1fac8f2280140544a1d22';
@@ -63,13 +62,12 @@
                             color = "red";
                           }
                           if (startTime == endTime) {
-                            $('#index-agenda').append("<p style='color:"+color+"'>" + startTime + " - <strong>" + title + "</strong></p>");
+                              $('#index-agenda').append("<p style='color:"+color+"'>" + startTime + " - <strong><a href='agenda.html#" + title.replace(/ /g, "-")+"'>" + title +"</a></strong></p>");
                           } else if (startTime.split("/")[1] == endTime.split("/")[1] && startTime.split("/")[2] == endTime.split("/")[2]) {
-                            $('#index-agenda').append("<p style='color:"+color+"'>" + startTime.split("/")[0] + " a " + endTime + " - <strong>" + title + "</strong></p>");
+                              $('#index-agenda').append("<p style='color:"+color+"'>" + startTime.split("/")[0] + " a " + endTime + " - <strong><a href='agenda.html#" + title.replace(/ /g, "-")+"'>" + title + "</a></strong></p>");
                           } else {
-                            $('#index-agenda').append("<p style='color:"+color+"'>" + startTime + " a " + endTime + " - <strong>" + title + "</strong></p>");
+                              $('#index-agenda').append("<p style='color:"+color+"'>" + startTime + " a " + endTime + " - <strong><a href='agenda.html#" + title.replace(/ /g, "-")+"'>" + title +"</a></strong></p>");
                           }
-
                         }
                       });
             $.getJSON("https://www.google.com/calendar/feeds/3sv3aefg65slkecmgb1omfirc8%40group.calendar.google.com/private-a1159206bcc1fae12b66e2f602484b96/full?alt=json-in-script&callback=?&orderby=updated&max-results=5&singleevents=true&sortorder=ascending&futureevents=true",
@@ -137,5 +135,4 @@
             </div>
         </div>
     </body>
-
 </html>

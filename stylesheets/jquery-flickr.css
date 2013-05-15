@@ -63,3 +63,7 @@
     padding: 15px;
     font-style: italic;
 }
+#flickr_sets {
+    float: left;
+    width: 250px;
+}

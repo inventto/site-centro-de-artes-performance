@@ -26,6 +26,7 @@ vallenato = function()
 
 	// The Accordion Effect
 	$('.accordion-header').click(function () {
+      if ($(this).next()[0].innerHTML.length > 0) {
 		if($(this).is('.inactive-header')) {
 			$('.active-header').toggleClass('active-header').toggleClass('inactive-header').next().slideToggle().toggleClass('open-content');
 			$(this).toggleClass('active-header').toggleClass('inactive-header');
@@ -36,7 +37,14 @@ vallenato = function()
 			$(this).toggleClass('active-header').toggleClass('inactive-header');
 			$(this).next().slideToggle().toggleClass('open-content');
 		}
+      }
 	});
+    $('.accordion-content').each(function(i, elem){
+      if (elem.innerHTML.length == 0) {
+          $(elem).addClass('without_content');
+          $(elem).prev().addClass('without_content');
+      }
+    });
 
 	return false;
 };

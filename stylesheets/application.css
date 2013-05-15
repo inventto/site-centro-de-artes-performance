@@ -207,8 +207,6 @@ h1 {
     content: ", ";
 }
 .texto{
-    width: 350px;
-    float: right;
     background-color: rgba(0,0,0,0.1);
     padding: 15px;
     border-radius: 30px;
@@ -304,12 +302,11 @@ i{
     font-size: 30px;
 }
 #agenda p {
-    text-align: left;
-    white-space: nowrap;
+    text-align: justify;
 }
 #agenda {
-    width: 305px;
     margin: 0 auto;
+    text-align: center;
 }
 #index-albuns {
     float: left;
@@ -381,4 +378,8 @@ i{
 }
 #horarios {
     text-align: center;
+}
+#retrospectiva{
+    margin: 0 auto;
+    width: 160px;
 }
