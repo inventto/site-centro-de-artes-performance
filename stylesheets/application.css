@@ -352,7 +352,7 @@ i{
     text-align: center;
     color: white;
     border-radius: 12px;
-    height: 17px;
+    height: 20px;
     float: left;
 }
 #ballet{
@@ -381,7 +381,7 @@ i{
     width: 800px;
     margin: 0 auto;
 }
-#horarios {
+#horarios{
     text-align: center;
 }
 #retrospectiva{
@@ -390,4 +390,18 @@ i{
 }
 .albuns-foto{
     margin-left: 250px;
+}
+#sub_menu .cursos{
+    list-style: none;
+    height: 30px;
+    margin: 0 auto;
+    width: 715px;
+}
+#sub_menu .cursos li a{
+    text-decoration: none;
+    float: left;
+    padding: 0 10px;
+}
+#sub_menu .cursos li a:hover{
+    text-decoration: underline;
 }

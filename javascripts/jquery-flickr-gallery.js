@@ -64,7 +64,7 @@ var flickrhelpers = null;
                             var args = "flickrSet=" + photoset.id;
                             sets.append("<div id='"+photoset.id+"'><a href='?" + args + "' title='" + photoset.description._content + "'>" + photoset.title._content +  " </a></div>");
                             $.getJSON("http://api.flickr.com/services/rest/?format=json&method=flickr.photosets.getPhotos&photoset_id=" + photoset.id + "&extras=date_upload&api_key=" + settings.flickrKey + "&jsoncallback=?", function(flk){
-                                console.log(flk.photoset);
+                                /*console.log(flk.photoset);*/
                                 last_photo = flk.photoset.photo.length - 1;
                                 var thumbURL = 'http://farm' + flk.photoset.photo[last_photo].farm + '.' + 'static.flickr.com/' + flk.photoset.photo[last_photo].server + '/' + flk.photoset.photo[last_photo].id + '_' + flk.photoset.photo[last_photo].secret + '_s.jpg'
 
