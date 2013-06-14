@@ -1,5 +1,5 @@
 .fotos img {
-  width: 350px;
+  width: 480px;
 }
 .texto{
     width: 97%;
@@ -12,4 +12,17 @@ p strong{
 }
 .centro strong{
     font-size: 15px;
+}
+#estrutura{
+    margin-top: 15px;
+    width: 450px;
+    background-color: rgba(0,0,0,0.1);
+    padding: 15px;
+    border-radius: 30px;
+    text-align: center;
+    float: right;
+}
+.textoEstrutura strong{
+    font-size: 16px;
+    line-height: 1.5;
 }

@@ -38,7 +38,7 @@
                               color = "red";
                             }
                             content = agenda.feed.entry[i].content.$t;
-                            content = content.replace(/(http[^ ]+.(jpg|jpeg|gif|png))/mg,"<img src='\$1' style='float:left;margin:10px'/>");
+                            content = content.replace(/(http[^ ]+.(jpg|jpeg|gif|png))/mg,"<img src='\$1' style='float:left;margin:10px;max-width:906px'/>");
 
                             if (startTime == endTime) {
                                 $('#agenda').append("<div id='" + title.replace(/ /g, "-") + "' class='accordion-header'><h4 style='color:"+color+"'>" + startTime + " - " + title + "</h4></div><div class='accordion-content'>" + content +"</div>");

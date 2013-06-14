@@ -323,7 +323,7 @@ i{
 #index-agenda {
     float: right;
     text-align: left;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(229, 229, 229, 0.5);
     border-radius: 30px 30px 30px 30px;
     padding: 15px;
     width: 400px;
@@ -403,5 +403,29 @@ i{
     padding: 0 10px;
 }
 #sub_menu .cursos li a:hover{
+    text-decoration: underline;
+}
+.tip {
+    border: solid 2px #000;
+    color: #000;
+    background: #E5E5E5;
+    display:none; /*--Hides by default--*/
+    padding:10px;
+    position:absolute;
+    z-index:1000;
+    border-radius: 20px 20px 20px 20px;
+    max-width: 500px;
+}
+.tip_trigger {
+    text-decoration: none;
+}
+ol a li img{
+    float:left;
+    margin-right:20px;
+}
+#danca_ventre_ginasticas{
+    text-decoration: none;
+}
+#danca_ventre_ginasticas:hover{
     text-decoration: underline;
 }
