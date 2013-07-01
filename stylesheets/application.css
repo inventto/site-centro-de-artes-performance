@@ -63,7 +63,9 @@ body{
 }
 .menu ul {
     margin: 0 auto;
-    width: 900px;
+    width: 770px;
+    white-space: nowrap;
+    padding: 0;
     list-style: none;
 }
 .menu ul li {
@@ -420,12 +422,19 @@ i{
     border-radius: 20px 20px 20px 20px;
     max-width: 500px;
 }
-.tip_trigger {
-    text-decoration: none;
-}
-ol a li img{
-    float:left;
+.tip img{
+    max-width: 140px;
+    height: 120px;
+    float: left;
     margin-right:20px;
+}
+ol .tip_trigger{
+   max-width: 236px;
+   margin-left: 35%;
+}
+.tip_trigger:hover{
+    cursor: -webkit-zoom-in;
+    cursor: -moz-zoom-in;
 }
 #danca_ventre_ginasticas{
     text-decoration: none;

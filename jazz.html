@@ -7,9 +7,11 @@
         <link href="stylesheets/application.css" rel="stylesheet" type="text/css" />
         <link href="stylesheets/vermelho.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+        <script type="text/javascript" src="javascripts/tooltips.js"></script>
         <script type="text/javascript">
             $(document).ready(function(){
                     $(".menu").load("_menu.html");
+                    tooltips();
                     });
         </script>
     </head>
@@ -42,9 +44,9 @@
                     memória.</p>
                 <p>Esta é uma modalidade bem eclética
                     indicada para qualquer idade ( > 7 anos). </p>
-                <p>UNIFORME: Colant/Shorts e meia-calça OU
-                    blusa justa e calça de malha -
-                    sapatilha preta e cabelo preso.</p>
+                <p>UNIFORME: <span class="tip_trigger">Colant/Shorts <span class="tip"><img src="URL" alt="Colant/Shorts"/></span></span> e <span class="tip_trigger">meia-calça<span class="tip"><img src="URL" alt="Meia-calça"/></span></span> OU <span class="tip_trigger">
+                        blusa justa<span class="tip"><img src="URL" alt="Blusa Justa"/></span></span> e <span class="tip_trigger">calça de malha<span class="tip"><img src="URL" alt="Calça de Malha"/></span></span> - <span class="tip_trigger">
+                        sapatilha preta<span class="tip"><img src="URL" alt="Sapatilha preta"/></span></span> e cabelo preso.</p>
             </div>
             <div class="esquerda">
                 <div class="titulo">

@@ -7,9 +7,11 @@
         <link href="stylesheets/application.css" rel="stylesheet" type="text/css" />
         <link href="stylesheets/cinza.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+        <script type="text/javascript" src="javascripts/tooltips.js"></script>
         <script type="text/javascript">
             $(document).ready(function(){
                     $(".menu").load("_menu.html");
+                    tooltips();
                     });
         </script>
     </head>
@@ -43,8 +45,7 @@
                     coordenação motora, memória e
                     resistência aeróbica, sendo um ótimo
                     aliado para manter o corpo em forma.</p>
-                <p>UNIFORME: Camiseta e Calça/Shorts de
-                    malha. Tênis e cabelo preso.</p>
+                <p>UNIFORME: <span class="tip_trigger">Camiseta<span class="tip"><img src="URL" alt="Camiseta"/></span></span> e <span class="tip_trigger">Calça/Shorts de malha<span class="tip"><img src="URL" alt="Calça/Shorts de Malha"/></span></span>. <span class="tip_trigger">Tênis<span class="tip"><img src="URL" alt="Tênis"/></span></span> e cabelo preso.</p>
             </div>
             <div class="esquerda">
                 <div class="titulo">
