@@ -66,6 +66,9 @@
 #flickr_sets {
     width: 250px;
     float: left;
+    height: 510px;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 #flickr_sets div{

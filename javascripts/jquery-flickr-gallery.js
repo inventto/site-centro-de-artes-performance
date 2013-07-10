@@ -54,13 +54,34 @@ var flickrhelpers = null;
                     }
                 });
 
-                if (!(settings.flickrUser === null)) {
+               if (!(settings.flickrUser === null)) {
                     $.getJSON("http://api.flickr.com/services/rest/?format=json&method=flickr.photosets.getList&user_id=" + settings.flickrUser + "&api_key=" + settings.flickrKey + "&jsoncallback=?", function(flickrData){
                         var length = flickrData.photosets.total;
-                        element.parent().before('<div id="flickr_sets"></div>');
+                        Photo_sort = flickrData.photosets.photoset.sort(function(a,b){
+                            return a.title._content < b.title._content? -1 : 1;
+                        });
+                        element.parent().before('<div id="flickr_sets" class="box"></div>');
                         var sets = $("#flickr_sets");
+                        var espetaculos = true;
+                        var eventos = true;
+                        var outras = true;
                         for (i=0; i<length; i++) {
-                            var photoset = flickrData.photosets.photoset[i];
+                            var photoset = Photo_sort[i];
+                            if(photoset.title._content.search(/\*/) >= 0){
+                                if(espetaculos){
+                              espetaculos = false;
+                              sets.append('<span id="espetaculos">Espetáculos</span>');
+                                }
+                            }
+                            else if(photoset.title._content.search(/#/) >= 0){
+                              if(eventos){
+                              eventos = false;
+                              sets.append('<span id="eventos">Eventos</span>');
+                              }
+                            } else if(outras) {
+                              outras = false;
+                              sets.append('<span id="outras">Outras fotos</span>');
+                            }
                             var args = "flickrSet=" + photoset.id;
                             sets.append("<div id='"+photoset.id+"'><a href='?" + args + "' title='" + photoset.description._content + "'>" + photoset.title._content +  " </a></div>");
                             $.getJSON("http://api.flickr.com/services/rest/?format=json&method=flickr.photosets.getPhotos&photoset_id=" + photoset.id + "&extras=date_upload&api_key=" + settings.flickrKey + "&jsoncallback=?", function(flk){

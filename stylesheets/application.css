@@ -169,6 +169,7 @@ h1 {
     color: #6E6E6E;
     min-height: 13px;
     white-space: nowrap;
+    margin-left: 100px;
 }
 #container #flickr_sets a {
     text-decoration: none;
@@ -319,26 +320,22 @@ i{
     margin: 0 auto;
     text-align: center;
 }
-#index-albuns {
-    float: left;
-    background-color: rgba(229, 229, 229, 0.5);
+.box{
+    background-color: rgba(0, 0, 0, 0.1);
     border-radius: 30px 30px 30px 30px;
     padding: 15px;
-    width: 420px;
+}
+#index-albuns {
+    float: left;
+    width: 450px;
 }
 #index-agenda {
     float: right;
     text-align: left;
-    background-color: rgba(229, 229, 229, 0.5);
-    border-radius: 30px 30px 30px 30px;
-    padding: 15px;
-    width: 400px;
+    width: 450px;
 }
 #index-alunos {
     text-align: left;
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 30px 30px 30px 30px;
-    padding: 15px;
     margin: 0 auto;
     width: 500px;
 }

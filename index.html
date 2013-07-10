@@ -7,7 +7,6 @@
         <link href="stylesheets/application.css" rel="stylesheet" type="text/css" />
         <script src="javascripts/jquery.min.js" type="text/javascript"></script>
         <script src="javascripts/jquery.timeago.js" type="text/javascript"></script>
-
         <script type="text/javascript">
             $(document).ready(function(){
                 $(".menu").load("_menu.html");
@@ -32,7 +31,7 @@
                  for (i=0; i < 4; i++) {
                     photoset = photoset_sorted[i];
                     args = "flickrSet=" + photoset.id;
-                    sets.append("<div id='album_" + photoset.id + "'><a href='fotos.html?last=true&" + args + "' title='" + photoset.description._content + "'>" + photoset.title._content + " </a></div>");
+                    sets.append("<div id='album_" + photoset.id + "'><a href='fotos.html?last=true&" + args + "' title='" + photoset.description._content + "'>" + photoset.title._content + " </a></br></div>");
                     loadFlickrSet(photoset.id, i > 0);
                  }
 
@@ -44,7 +43,7 @@
                         last_photo = flickrData.photoset.photo.length - 1;
     					var thumbURL = 'http://farm' + flickrData.photoset.photo[last_photo].farm + '.' + 'static.flickr.com/' + flickrData.photoset.photo[last_photo].server + '/' + flickrData.photoset.photo[last_photo].id + '_' + flickrData.photoset.photo[last_photo].secret + '_s.jpg'
                         time_ago = jQuery.timeago(new Date(flickrData.photoset.photo[last_photo].dateupload * 1000));
-                        var margin = adjustMargin ? '24px 10px -24px' : '0px 10px -24px';
+                        var margin = adjustMargin ? '24px 10px -24px' : '0px 10px -32px';
                         var thumbHTML = '<img src=' + thumbURL + ' width="75" height="75" title="' + flickrData.photoset.photo[last_photo].title + '" style="margin: ' + margin + '">';
                         $("#album_" + flickrSet).prepend(thumbHTML);
                         $("#album_" + flickrSet).append(' <span class="time-ago">(' + time_ago + ')</span>');
@@ -120,8 +119,8 @@
             </div>
         </div>
         <div id="container">
-            <div id="index-albuns"><h2>Últimas fotos:</h2></div>
-            <div id="index-agenda"><h2>Agenda:</h2></div>
+            <div id="index-albuns" class="box"><h2>Últimas fotos:</h2></div>
+            <div id="index-agenda" class="box"><h2>Agenda:</h2></div>
             <i></i>
             <div id="index-alunos"><h2>Área do Aluno:</h2></div>
             <h2 id="horarios">Horários</h2>
