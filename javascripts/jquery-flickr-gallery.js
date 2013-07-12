@@ -72,8 +72,7 @@ var flickrhelpers = null;
                               espetaculos = false;
                               sets.append('<span id="espetaculos">Espetáculos</span>');
                                 }
-                            }
-                            else if(photoset.title._content.search(/#/) >= 0){
+                            } else if(photoset.title._content.search(/#/) >= 0){
                               if(eventos){
                               eventos = false;
                               sets.append('<span id="eventos">Eventos</span>');
