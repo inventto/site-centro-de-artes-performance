@@ -43,7 +43,7 @@
                         last_photo = flickrData.photoset.photo.length - 1;
     					var thumbURL = 'http://farm' + flickrData.photoset.photo[last_photo].farm + '.' + 'static.flickr.com/' + flickrData.photoset.photo[last_photo].server + '/' + flickrData.photoset.photo[last_photo].id + '_' + flickrData.photoset.photo[last_photo].secret + '_s.jpg'
                         time_ago = jQuery.timeago(new Date(flickrData.photoset.photo[last_photo].dateupload * 1000));
-                        var margin = adjustMargin ? '0px 10px -35px' : '15px 10px -35px';
+                        var margin = adjustMargin ? '0px 10px -35px' : '0 10px -35px';
                         var thumbHTML = '<img src=' + thumbURL + ' width="75" height="75" title="' + flickrData.photoset.photo[last_photo].title + '" style="margin: ' + margin + '">';
                         $("#album_" + flickrSet).prepend(thumbHTML);
                         $("#album_" + flickrSet).append(' <span class="time-ago">(' + time_ago + ')</span>');

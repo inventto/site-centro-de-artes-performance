@@ -160,9 +160,6 @@ var flickrhelpers = null;
                     }
 
 				});
-
-
-
         }
 
 		// Helper functions here
