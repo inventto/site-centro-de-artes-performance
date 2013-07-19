@@ -8,11 +8,13 @@
         <link href="stylesheets/rosa.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="javascripts/jquery.min.js"></script>
         <script type="text/javascript" src="javascripts/tooltips.js"></script>
+        <script type="text/javascript" src="javascripts/horariosCurso.js"></script>
         <script type="text/javascript">
             $(document).ready(function(){
                     $(".menu").load("_menu.html");
                     tooltips();
                     });
+            $.getJSON("https://www.google.com/calendar/feeds/ac1c88ki1njm8pflpg5bn74dao@group.calendar.google.com/private-f3f2cd956d241460bc96d732f7fe31d6/full?alt=json-in-script&callback=?&orderby=starttime&maxresults=10&singleevents=true&sortorder=ascending&futureevents=true", horariosCurso);
 </script>
     </head>
     <body>
@@ -42,19 +44,8 @@
                 <div class="titulo">
                     Ballet Infantil
                 </div>
-                <div class="posicao1 inclinacao1">
-                    <p><strong> Sábado</strong></p>
-                    <p>Baby Class I – 3/4 anos – 10:30 às 11:30</p>
-                    <p>Baby Class II – 5 anos – 09:30 às 10:30</p>
-                    <p>Pré Ballet – 6 anos – 08:30 às 09:30</p>
-                </div>
                 <div class="foto">
                     <img src="images/ballet.jpg"/>
-                </div>
-                <div class="posicao2 inclinacao2">
-                    <p><strong>Terça e Quinta</strong></p>
-                    <p>Pré Ballet Misto – 5 e 6 anos</p>
-                    <p>18:00 às 19:00</p>
                 </div>
             </div>
             <i></i>

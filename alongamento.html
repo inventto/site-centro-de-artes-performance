@@ -7,10 +7,12 @@
         <link href="stylesheets/application.css" rel="stylesheet" type="text/css" />
         <link href="stylesheets/roxo.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+        <script type="text/javascript" src="javascripts/horariosCurso.js"></script>
         <script type="text/javascript">
             $(document).ready(function(){
                     $(".menu").load("_menu.html");
                     });
+            $.getJSON("https://www.google.com/calendar/feeds/4ninva7nrt38rgdjrge6jhide4@group.calendar.google.com/private-6fd0bfda4c96fd9537caa18e4e42cf23/full?alt=json-in-script&callback=?&orderby=starttime&maxresults=10&singleevents=true&sortorder=ascending&futureevents=true", horariosCurso);
         </script>
     </head>
     <body>
@@ -37,25 +39,8 @@
                 <div class="titulo">
                     Alongamento Gratuito
                 </div>
-                <div class="posicao1 inclinacao2">
-                    <p><strong>Iniciante</strong> > 7 anos</p>
-                    <p>2a – 09:30 às 10:30</p>
-                    <p>2a e 4a – 18:00 às 18:30</p>
-                    <p>4a – 09:30 às 10:30</p>
-                    <p>5a – 18:00 às 19:00</p>
-                </div>
                 <div class="foto">
                     <img src="images/alongamento.jpg"/>
-                </div>
-                <div class="posicao2 inclinacao1">
-                    <p><strong>Intermediário</strong> > 10 anos</p>
-                    <p>3a - 10:30 ás 11:30</p>
-                    <p>5a – 10:30 às 11:30</p>
-                    <p>5a – 14:30 às 15:30</p>
-                </div>
-                <div class="posicao3 inclinacao3">
-                    <p><strong>Avançado</strong> > 13anos</p>
-                    <p>2a e 4a – 15:30 às 16:00 </p>
                 </div>
             </div>
             <i></i>

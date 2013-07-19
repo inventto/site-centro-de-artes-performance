@@ -58,7 +58,7 @@ var flickrhelpers = null;
                     $.getJSON("http://api.flickr.com/services/rest/?format=json&method=flickr.photosets.getList&user_id=" + settings.flickrUser + "&api_key=" + settings.flickrKey + "&jsoncallback=?", function(flickrData){
                         var length = flickrData.photosets.total;
                         Photo_sort = flickrData.photosets.photoset.sort(function(a,b){
-                            return a.title._content < b.title._content? -1 : 1;
+                          return a.title._content < b.title._content? -1 : 1;
                         });
                         element.parent().before('<div id="flickr_sets" class="box"></div>');
                         var sets = $("#flickr_sets");
