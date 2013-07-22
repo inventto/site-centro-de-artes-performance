@@ -33,7 +33,17 @@ horariosCurso = function(agenda){
                        horarios[title][content] = {}
                      horarios[title][content][diaSemana]= { horaInicio: horaInicio, horaFim: horaFim };
                   }
+                  titulos = [];
                   for(titulo in horarios){
+                    titulos.push(titulo);
+                  }
+
+                  titulos = titulos.sort(function(a,b){
+                      return (a.match(/^\s*/)[0].length < b.match(/^\s*/)[0].length)? 1 : -1;
+                  });
+
+                  for(j = 0; j < titulos.length; j++){
+                      titulo = titulos[j];
                       t = titulo.split("(");
                       rand = function() {
                         return Math.floor((Math.random() * 3) + 1);
@@ -45,15 +55,15 @@ horariosCurso = function(agenda){
                       div = $('.foto').next();
                       horarios_por_nivel = horarios[titulo];
                       window.horarios_por_nivel = horarios_por_nivel;
-                      aux = [];
+                      descricao = [];
                       for(c in horarios_por_nivel){
-                          aux.push(c);
+                          descricao.push(c);
                       }
-                      aux = aux.sort(function(a,b){
+                      descricao = descricao.sort(function(a,b){
                               return (a > b)? 1 : -1;
                               });
-                      for(i = 0; i < aux.length; i++){
-                          c = aux[i];
+                      for(i = 0; i < descricao.length; i++){
+                          c = descricao[i];
                           div.append("<p>"+c+"</p>");
                           horarios_por_turma = horarios_por_nivel[c];
                           mesmo_horario = true;
@@ -79,6 +89,6 @@ horariosCurso = function(agenda){
                             }
                           }
                       }
-                 }
+                  }
                  window.horario = horarios;
 };
