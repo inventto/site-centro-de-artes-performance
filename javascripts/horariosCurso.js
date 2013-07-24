@@ -33,6 +33,10 @@ horariosCurso = function(agenda){
                        horarios[title][content] = {}
                      horarios[title][content][diaSemana]= { horaInicio: horaInicio, horaFim: horaFim };
                   }
+                 diaSemanaSort = [];
+                 for(d in horarios[title][content]){
+                    diaSemanaSort.push(d);
+                 }
                   titulos = [];
                   for(titulo in horarios){
                     titulos.push(titulo);
@@ -53,6 +57,15 @@ horariosCurso = function(agenda){
                       else
                         $('.foto').after("<div class='posicao"+rand()+" inclinacao"+rand()+"'><p><strong>"+t[0]+"</strong></p></div>");
                       div = $('.foto').next();
+                      horarios_ordenado_por_diaSemana = horarios[titulo][content];
+                      diaSemanaSort = [];
+                      for(dia in horarios_ordenado_por_diaSemana){
+                        diaSemanaSort.push(dia);
+                      }
+                      diaSemanaSort = diaSemanaSort.sort(function(a,b){
+                        return b.match(/^\d/) > a.match(/^\d/);
+                    });
+
                       horarios_por_nivel = horarios[titulo];
                       window.horarios_por_nivel = horarios_por_nivel;
                       descricao = [];

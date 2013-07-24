@@ -200,7 +200,6 @@ h1 {
 .texto ul,
 .texto ul li{
     list-style: none;
-    display: inline;
 }
 .texto .cursos a:hover{
     text-decoration: underline;
@@ -208,9 +207,9 @@ h1 {
 .texto .cursos a {
     text-decoration: none;
 }
-.texto .cursos a:after{
+/*.texto .cursos a:after{
     content: ", ";
-}
+}*/
 .texto{
     text-align: center;
     width: 350px;

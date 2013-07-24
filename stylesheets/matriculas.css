@@ -3,9 +3,13 @@
     color: #24A4FF;
     text-shadow: 3px 3px 3px #010CFE;
     font-size: 120px;
+    line-height: 0.7;
 }
 .foto img {
     border-color: #053A62;
     width: 450px;
     margin-left: 70px;
+}
+.cursos{
+    margin-bottom: -18px;
 }
