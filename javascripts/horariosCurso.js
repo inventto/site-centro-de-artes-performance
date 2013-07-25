@@ -54,36 +54,21 @@ horariosCurso = function(agenda){
                         $('.foto').after("<div class='posicao"+rand()+" inclinacao"+rand()+"'><p><strong>"+t[0]+"</strong></p></div>");
                       div = $('.foto').next();
 
-                      horarios_ordenado_por_diaSemana = horarios[titulo];
-
-                      diaSemanaSort = [];
-                      for(dia in horarios_ordenado_por_diaSemana){
-                        diaSemanaSort.push(dia);
-                      }
-
-                      diaSemanaSort = diaSemanaSort.sort(function(a,b){
-                        return b.match(/^\d/) > a.match(/^\d/);
-                      });
-
                       horarios_por_nivel = horarios[titulo];
 
                       descricao = [];
                       for(c in horarios_por_nivel){
                           descricao.push(c);
                       }
-                      if(j == 2) console.log(descricao);
                       descricao = descricao.sort(function(a,b){
                               return (a > b)? 1 : -1;
                       });
-                      if (j == 2) window.alongamento_first = horarios_por_nivel;
 
                       for(i = 0; i < descricao.length; i++){
                           if(j == 2) console.log("I: " + i);
                           c = descricao[i];
                           div.append("<p>"+c+"</p>");
                           horarios_por_turma = horarios_por_nivel[c];
-
-                          if (j == 2) window.alongamento = horarios_por_turma;
 
                           days = [];
                           for (d in horarios_por_turma) {
