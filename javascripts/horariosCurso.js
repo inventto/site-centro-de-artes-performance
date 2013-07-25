@@ -29,21 +29,17 @@ horariosCurso = function(agenda){
                      //diaSemanaFim = (dataFim.getDay() + 1) + "a";
 
                      content = agenda.feed.entry[i].content.$t;
-		 if (!horarios[title][content])
-                       horarios[title][content] = {}
-                     horarios[title][content][diaSemana]= { horaInicio: horaInicio, horaFim: horaFim };
+        		     if (!horarios[title][content]) {
+                       horarios[title][content] = {};
+                     }
+                     horarios[title][content][diaSemana] = { horaInicio: horaInicio, horaFim: horaFim };
                   }
-                 diaSemanaSort = [];
-                 for(d in horarios[title][content]){
-                    diaSemanaSort.push(d);
-                 }
                   titulos = [];
                   for(titulo in horarios){
                     titulos.push(titulo);
                   }
-
                   titulos = titulos.sort(function(a,b){
-                      return (a.match(/^\s*/)[0].length < b.match(/^\s*/)[0].length)? 1 : -1;
+                      return (a.match(/^\s*/)[0].length < b.match(/^\s*/)[0].length) ? 1 : -1;
                   });
 
                   for(j = 0; j < titulos.length; j++){
@@ -57,34 +53,63 @@ horariosCurso = function(agenda){
                       else
                         $('.foto').after("<div class='posicao"+rand()+" inclinacao"+rand()+"'><p><strong>"+t[0]+"</strong></p></div>");
                       div = $('.foto').next();
-                      horarios_ordenado_por_diaSemana = horarios[titulo][content];
+
+                      horarios_ordenado_por_diaSemana = horarios[titulo];
+
                       diaSemanaSort = [];
                       for(dia in horarios_ordenado_por_diaSemana){
                         diaSemanaSort.push(dia);
                       }
+
                       diaSemanaSort = diaSemanaSort.sort(function(a,b){
                         return b.match(/^\d/) > a.match(/^\d/);
-                    });
+                      });
 
                       horarios_por_nivel = horarios[titulo];
-                      window.horarios_por_nivel = horarios_por_nivel;
+
                       descricao = [];
                       for(c in horarios_por_nivel){
                           descricao.push(c);
                       }
+                      if(j == 2) console.log(descricao);
                       descricao = descricao.sort(function(a,b){
                               return (a > b)? 1 : -1;
-                              });
+                      });
+                      if (j == 2) window.alongamento_first = horarios_por_nivel;
+
                       for(i = 0; i < descricao.length; i++){
+                          if(j == 2) console.log("I: " + i);
                           c = descricao[i];
                           div.append("<p>"+c+"</p>");
                           horarios_por_turma = horarios_por_nivel[c];
+
+                          if (j == 2) window.alongamento = horarios_por_turma;
+
+                          days = [];
+                          for (d in horarios_por_turma) {
+                              days.push(d);
+                          }
+
+                          days = days.sort(function(a,b) {
+                            return (a > b) ? 1 : -1;
+                          });
+
+                          hrs = [];
+                          for(k = 0; k < days.length; k++) {
+                            hrs.push(horarios_por_turma[days[k]]);
+                          }
+
+                          horarios_por_turma = {};
+                          for(k = 0; k < days.length; k++) {
+                            horarios_por_turma[days[k]] = hrs[k];
+                          }
+
                           mesmo_horario = true;
                           hora_inicio = undefined;
                           hora_fim = undefined;
                           for(d in horarios_por_turma) {
                             if (hora_inicio && hora_fim) {
-                          if (hora_inicio != horarios_por_turma[d].horaInicio || hora_fim != horarios_por_turma[d].horaFim)
+                              if (hora_inicio != horarios_por_turma[d].horaInicio || hora_fim != horarios_por_turma[d].horaFim)
                                 mesmo_horario = false;
                             }
                             hora_inicio = horarios_por_turma[d].horaInicio;
