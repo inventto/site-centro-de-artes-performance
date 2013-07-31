@@ -69,7 +69,7 @@ horariosCurso = function(agenda){
                           c = descricao[i];
                           div.append("<p>"+c+"</p>");
                           horarios_por_turma = horarios_por_nivel[c];
-
+                          window.horas = horarios_por_turma;
                           days = [];
                           for (d in horarios_por_turma) {
                               days.push(d);
