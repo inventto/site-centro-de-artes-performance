@@ -70,16 +70,16 @@ var flickrhelpers = null;
                             if(photoset.title._content.search(/\*/) >= 0){
                                 if(espetaculos){
                               espetaculos = false;
-                              sets.append('<span id="espetaculos">Espetáculos</span>');
+                              sets.append('<span id="eventos">Eventos</span>');
                                 }
-                            } else if(photoset.title._content.search(/#/) >= 0){
+                            } else if(photoset.title._content.search(/[#\-]/) >= 0){
                               if(eventos){
                               eventos = false;
-                              sets.append('<span id="eventos">Eventos</span>');
+                              sets.append('<span id="espetaculos">Espetáculos</span>');
                               }
                             } else if(outras) {
                               outras = false;
-                              sets.append('<span id="outras">Outras fotos</span>');
+                              sets.append('<span id="outras">Aulas e Ensaios</span>');
                             }
                             var args = "flickrSet=" + photoset.id;
                             sets.append("<div id='"+photoset.id+"'><a href='?" + args + "' title='" + photoset.description._content + "'>" + photoset.title._content +  " </a></div>");

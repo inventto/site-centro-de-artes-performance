@@ -63,7 +63,7 @@ body{
 }
 .menu ul {
     margin: 0 auto;
-    width: 770px;
+    width: 700px;
     white-space: nowrap;
     padding: 0;
     list-style: none;
@@ -351,12 +351,16 @@ i{
 }
 #legenda span{
     margin-left: 2px;
-    width: 120px;
+    width: 100px;
     text-align: center;
     color: white;
     border-radius: 12px;
     height: 20px;
     float: left;
+    font-size: 12px;
+}
+#ballet-infantil{
+    background: #E67399;
 }
 #ballet{
     background: #668CD9;
