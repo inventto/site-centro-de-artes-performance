@@ -3,9 +3,9 @@
             $(function() {
                 // Stick the #nav to the top of the window
                 var nav = $('#top_wrapper');
-                var navHomeY = nav.offset().top + 155;
+                var navHomeY = 155;
                 var $w = $(window);
-                $w.scroll(function() {
+                ajustarMenu = function() {
                         var scrollTop = $w.scrollTop();
                         if (scrollTop < navHomeY) {
                             console.log ("movendo");
@@ -18,7 +18,9 @@
                                     top: "-"+navHomeY+"px"
                                 });
                         }
-                });
+                };
+                $w.scroll(ajustarMenu);
+                ajustarMenu();
             });
      });
 </script>
