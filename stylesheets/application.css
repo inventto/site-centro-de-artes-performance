@@ -63,7 +63,7 @@ body{
 }
 .menu ul {
     margin: 0 auto;
-    width: 700px;
+    width: 710px;
     white-space: nowrap;
     padding: 0;
     list-style: none;
@@ -243,7 +243,7 @@ h1 {
     width: 350px;
 }
 .posicao1 {
-    margin: -25px 40px 25px -100px;
+    margin: -20px 40px 30px -100px;
     float:right;
     background-color: #ffffff;
     border: solid 4px;
@@ -259,7 +259,7 @@ h1 {
     -ms-transform: rotate(10deg);
 }
 .posicao2{
-    margin: -25px 10px 25px -140px;
+    margin: -25px 10px 30px -140px;
     float: right;
     background-color: #ffffff;
     border: solid 4px;
@@ -275,7 +275,7 @@ h1 {
     -ms-transform: rotate(353deg);
 }
 .posicao3{
-    margin: -25px 70px 25px -140px;
+    margin: -25px 70px 30px -140px;
     float: right;
     background-color: #ffffff;
     border: solid 4px;
