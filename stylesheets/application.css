@@ -63,7 +63,7 @@ body{
 }
 .menu ul {
     margin: 0 auto;
-    width: 710px;
+    width: 720px;
     white-space: nowrap;
     padding: 0;
     list-style: none;
@@ -173,6 +173,8 @@ h1 {
 }
 #container #flickr_sets a {
     text-decoration: none;
+    display: block;
+    margin-left: 90px;
     border-left: 1px solid lightgray;
     border-right: 1px solid lightgray;
     padding: 5px;
@@ -243,7 +245,7 @@ h1 {
     width: 350px;
 }
 .posicao1 {
-    margin: -20px 40px 30px -100px;
+    margin: -25px 40px 30px -100px;
     float:right;
     background-color: #ffffff;
     border: solid 4px;
@@ -252,6 +254,7 @@ h1 {
     min-width: 250px;
 }
 .inclinacao1{
+    margin-top: -15px !important;
    transform: rotate(10deg);
     -webkit-transform: rotate(10deg);
     -moz-transform: rotate(10deg);
@@ -402,7 +405,7 @@ i{
     list-style: none;
     height: 30px;
     margin: 0 auto;
-    width: 715px;
+    width: 730px;
 }
 #sub_menu .cursos li a{
     text-decoration: none;
@@ -432,6 +435,10 @@ i{
 ol .tip_trigger{
    max-width: 236px;
    margin-left: 35%;
+}
+a img{
+    border: none;
+    outline: none;
 }
 .tip_trigger:hover{
     cursor: -webkit-zoom-in;
