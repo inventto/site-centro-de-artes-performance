@@ -171,10 +171,15 @@ h1 {
     white-space: nowrap;
     margin-left: 100px;
 }
+#container #index-albuns #flickr_sets a {
+    margin-left: 90px;
+    margin-top: 0;
+}
 #container #flickr_sets a {
     text-decoration: none;
     display: block;
-    margin-left: 90px;
+    margin-left: 32px;
+    margin-top: -32px;
     border-left: 1px solid lightgray;
     border-right: 1px solid lightgray;
     padding: 5px;
