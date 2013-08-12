@@ -14,19 +14,7 @@
         <script type="text/javascript">
             $(document).ready(function(){
                 $(".menu").load("_menu.html");
-            });
-
-            $(function() {
-              $('#slides').slidesjs({
-                width: 800,
-                eight: 400,
-                play: {
-                active: true,
-                auto: true,
-                interval: 4000,
-                swap: true
-                }
-              });
+                $("#slides").load("_slides.html");
             });
 
             function Objeto(id, descriptionContent, titleContent) {
@@ -137,8 +125,6 @@
         </div>
         <div id="container">
             <div id="slides">
-              <img src="images/performance2.JPG" title="Performance"/>
-              <img src="images/performance3.JPG" title="Performance"/>
             </div>
             <div id="index-albuns" class="box"><h2>Últimas fotos:</h2></div>
             <div id="index-agenda" class="box"><h2>Agenda:</h2></div>
