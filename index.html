@@ -12,10 +12,25 @@
         <script src="javascripts/jquery.slides.min.js" type="text/javascript"></script>
         <script src="javascripts/jquery.timeago.js" type="text/javascript"></script>
         <script type="text/javascript">
+
+
             $(document).ready(function(){
                 $(".menu").load("_menu.html");
-                $("#slides").load("_slides.html");
-            });
+                $("#slides").load("_slides.html", function(){
+                  $(function() {
+                    $('#slides').slidesjs({
+                      width: 800,
+                      height: 400,
+                      play: {
+                        active: true,
+                        auto: true,
+                        interval: 4000,
+                        swap: true
+                      }
+                    });
+                  });
+                });
+             });
 
             function Objeto(id, descriptionContent, titleContent) {
                 this.id = id;
@@ -134,6 +149,11 @@
         </div>
         <div id="footer">
             <div class="menu">
+            </div>
+            <div class="endereco">
+              <span>Endereço: Av. União da Vitória, 407, Vila Nova, Francisco Beltrão - PR</span><br/>
+              <span>Fone: (46) 3524-2541,</span>
+              <span>Fone: (46) 3057-2541</span>
             </div>
         </div>
             <a class="inventto" href="http://www.invent.to"><img src="images/logo_footer.png"/></a>

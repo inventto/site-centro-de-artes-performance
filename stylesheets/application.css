@@ -187,8 +187,11 @@ h1 {
 #container #flickr_sets a:hover {
     text-decoration: underline;
 }
+#footer .menu ul{
+    margin: -8px auto;
+}
 #footer{
-    height: 20px;
+    height: 45px;
     margin: 0 auto;
     padding: 20px;
     -moz-box-shadow: 0px 0px 20px #000000;
@@ -196,6 +199,11 @@ h1 {
     box-shadow: 0px 0px 20px #000000;
 /*    background: url("../images/logo_footer.png") no-repeat scroll 99% center #E5E5FF; */
     background-color: #E5E5FF;
+}
+.endereco{
+    clear: both;
+    text-align: center;
+    margin: 25px;
 }
 #footer ul li a:hover {
     text-decoration: underline;

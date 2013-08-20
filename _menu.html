@@ -39,7 +39,7 @@
         <script type="text/javascript">
           $(".cursos").load("_cursos.html",
                   function (responseText, textStatus, XMLHttpRequest) {
-                    $('a[href*=' + window.location.pathname.split("/").reverse()[0] + ']').addClass('selecionado');
+                    $('a[href*="' + window.location.pathname.split("/").reverse()[0] + '"]').addClass('selecionado');
                   });
         </script>
     </li>
