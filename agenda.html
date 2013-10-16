@@ -35,8 +35,8 @@
                                 startTime = data.startTime.replace(/T.*/,"").split("-").reverse().join("/");
                                 endTime = data.endTime.replace(/T.*/,"").split("-").reverse().join("/");
                                 //color = "#000";
-                                content = content.replace(/download\(([^;]+);"([^"]*)"\)/,"<a href='\$1' title='Download' target='_blank'><img src='https://cdn1.iconfinder.com/data/icons/pretty_office_3/32/Package-Download.png' style='margin:0 10px -10px 0;'>\$2</a>");
-                                content = content.replace(/(http[^ ]+.(jpg|jpeg|gif|png)) /mg,"<img src='\$1' style='float:left;margin:10px'/>");
+                                content = content.replace(/(http[^ ]+.(jpg|jpeg|gif|png))/mg,"<img src='\$1' style='float:left;margin:10px;'/>");
+                                content = content.replace(/download\(([^;]+);"([^"]*)"\)/,"<a href='\$1' title='Download' target='_blank'><img src='https://cdn1.iconfinder.com/data/icons/pretty_office_3/32/Package-Download.png' style='margin:0 10px -10px 0;' />\$2</a>");
                                 if (startTime == endTime) {
                                     $('#accordion-container').append("<div id='" + title.replace(/ /g, "-") + "' class='accordion-header'><h2>" + startTime + " - " + title.toUpperCase() + "</h2></div><div class='accordion-content'>" + content + "<p>" + where + "</p></div>");
                                 } else if (startTime.split("/")[1] == endTime.split("/")[1] && startTime.split("/")[2] == endTime.split("/")[2]) {
