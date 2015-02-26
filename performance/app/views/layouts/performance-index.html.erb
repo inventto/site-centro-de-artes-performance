@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Performance</title>
+    <%= csrf_meta_tags %>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="/assets/favicon.ico" />
+    <%= stylesheet_link_tag comfy_cms_render_css_path(@cms_site.id, @cms_layout.identifier) %>
+    <%= javascript_include_tag comfy_cms_render_js_path(@cms_site.id, @cms_layout.identifier) %>
+    <link href="/assets/application.css" rel="stylesheet" type="text/css" />
+
+    <meta name="google-site-verification" content="+nxGUDJ4QpAZ5l9Bsjdi102tLVC21AIh5d1Nl23908vVuFHs34="/>
+    <meta name="author" content="Performance" >
+    <meta name="keywords" content="performance, jazz, centro de artes" />
+    <meta name="description" content="Uma empresa com o objetivo de despertar o interesse pela arte e o gosto artístico, oferecendo os benefícios da dança e da música através de aulas práticas e teóricas" />
+    <meta name="document-classification" content="Internet Services" / >
+    <meta name="document-rights" content="Public" / >
+    <meta name="robots" content="INDEX, FOLLOW" / >
+  </head>
+  <body>
+    <div class="container">
+      <%= yield %>
+    </div>
+    <footer id="footer">
+      <div class="row">
+        <div class="col-md-6 endereco">
+          <p><iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com.br/maps?f=q&amp;source=s_q&amp;hl=pt-BR&amp;geocode=&amp;q=Academia+Vida+Mais+Ativa+-+Rua+Uni%C3%A3o+da+Vit%C3%B3ria,+Francisco+Beltr%C3%A3o+-+Paran%C3%A1&amp;aq=0&amp;oq=vida+mais+at&amp;sll=-25.060763,-53.397998&amp;sspn=1.11213,2.024231&amp;ie=UTF8&amp;hq=Academia+Vida+Mais+Ativa+-&amp;hnear=R.+Uni%C3%A3o+da+Vit%C3%B3ria+-+Francisco+Beltr%C3%A3o+-+Paran%C3%A1&amp;ll=-26.07231,-53.038941&amp;spn=0.006295,0.006295&amp;t=m&amp;output=embed"></iframe><br /><small><a href="https://maps.google.com.br/maps?f=q&amp;source=embed&amp;hl=pt-BR&amp;geocode=&amp;q=Academia+Vida+Mais+Ativa+-+Rua+Uni%C3%A3o+da+Vit%C3%B3ria,+Francisco+Beltr%C3%A3o+-+Paran%C3%A1&amp;aq=0&amp;oq=vida+mais+at&amp;sll=-25.060763,-53.397998&amp;sspn=1.11213,2.024231&amp;ie=UTF8&amp;hq=Academia+Vida+Mais+Ativa+-&amp;hnear=R.+Uni%C3%A3o+da+Vit%C3%B3ria+-+Francisco+Beltr%C3%A3o+-+Paran%C3%A1&amp;ll=-26.07231,-53.038941&amp;spn=0.006295,0.006295&amp;t=m" style="color:#0000FF;text-align:left">Exibir mapa ampliado</a></small></p>
+          <span>Endereço: Av. União da Vitória, 407, Vila Nova, Francisco Beltrão - PR</span><br/>
+          <span>Fone: (46) 3524-2541,</span>
+          <span>Fone: (46) 3057-2541</span>
+        </div>  
+        <div class="col-md-6">
+          <span>Acompanhe nas redes sociais:</span><br />
+          <div class="fb-like-box" data-href="https://www.facebook.com/pages/CentrodeArtesPerformance/177877792394738" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
+        </div>
+      </div>
+    </footer>
+  </body>
+  <script src="/assets/jquery-2.1.3.min.js"></script>
+  <script src="/assets/bootstrap.js"></script>
+  <script>
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+      fjs.parentNode.insertBefore(js, fjs);
+
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+</html>

@@ -68,7 +68,7 @@
     float: left;
     height: 510px;
     overflow-x: auto;
-    overflow-y: hidden;
+    overflow-y: scroll;
 }
 
 #flickr_sets div{

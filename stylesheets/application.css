@@ -238,7 +238,7 @@ h1 {
     float: none;
 }
 .esquerda {
-    margin-right: 350px;
+    margin: 0 10%;
 }
 .esquerda * {
     font-size: 12px;
