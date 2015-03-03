@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
   <head>
     <title>Performance</title>
     <%= csrf_meta_tags %>
@@ -8,6 +8,7 @@
     <%= stylesheet_link_tag comfy_cms_render_css_path(@cms_site.id, @cms_layout.identifier) %>
     <%= javascript_include_tag comfy_cms_render_js_path(@cms_site.id, @cms_layout.identifier) %>
     <link href="/assets/application.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
     <meta name="google-site-verification" content="+nxGUDJ4QpAZ5l9Bsjdi102tLVC21AIh5d1Nl23908vVuFHs34="/>
     <meta name="author" content="Performance" >
@@ -45,5 +46,13 @@
       fjs.parentNode.insertBefore(js, fjs);
 
     }(document, 'script', 'facebook-jssdk'));
+  </script>
+  <script>
+    $(document).ready(function(){
+      page = window.location.pathname.split("/").reverse()[0];
+      if (page.length == 0)
+        page = "/home";
+      $('a[href$="'+ page + '"]').addClass('selecionado');
+    });  
   </script>
 </html>

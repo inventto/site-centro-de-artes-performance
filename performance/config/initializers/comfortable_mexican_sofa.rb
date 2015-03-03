@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 ComfortableMexicanSofa.configure do |config|
+  config.upload_file_options[:styles] = { menu_item: '175x11>', thumb: '100x100<', medium: '300x300<'}
   # Title of the admin area
   #   config.cms_title = 'ComfortableMexicanSofa CMS Engine'
 
