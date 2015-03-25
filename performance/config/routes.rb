@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # Make sure this routeset is defined last
   comfy_route :cms, :path => '/', :sitemap => false
 
+  post "/mandar_email", to: "application#mandar_email_contato"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

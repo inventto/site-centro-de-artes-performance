@@ -71,13 +71,29 @@
         $('<script />', { type : 'text/javascript', src : "/assets/calendario.js" }).appendTo('head');
       } else if (page == 'fotos') {
         $('<script />', { type : 'text/javascript', src : "/assets/jquery.flexslider-min.js"}).appendTo('head');
-        $('<script />', { type : 'text/javascript', src : "/assets/flickr-gallery2.js"}).appendTo('head');
+        $('<script />', { type : 'text/javascript', src : "/assets/flickr-gallery.js"}).appendTo('head');
+        $('<link />', { type : 'text/stylesheet', src : "/assets/jquery-flickr.css"}).appendTo('head');
+        $('<script />', { type : 'text/javascript', src : "/assets/mosaic.1.0.1.js"}).appendTo('head');
+        $('<link />', { type : 'text/stylesheet', src : "/assets/mosaic.css"}).appendTo('head');
           $(window).load(function() {
-            $('.flexslider').flexslider({
+            $('#carousel').flexslider({
               animation: "slide",
-              controlNav: "thumbnails"
+              controlNav: false,
+              animationLoop: false,
+              slideshow: false,
+              itemWidth: 150,
+              itemMargin: 5,
+              asNavFor: '#slider'
+            });
+            $('#slider').flexslider({
+              animation: "slide",
+              controlNav: false,
+              animationLoop: false,
+              slideshow: false,
+              sync: "#carousel"
             });
           });
+
         if (getURLParameter("flickrSet")) {
           $('#flickr_div').flickrGallery({
             "flickrSet" : getURLParameter("flickrSet"),

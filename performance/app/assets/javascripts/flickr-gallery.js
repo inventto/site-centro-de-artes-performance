@@ -36,23 +36,7 @@ var flickrhelpers = null;
 				// CSS jqfobject overflow for aspect ratio
 				element.css("overflow","hidden");
 
-                // Set navigation click event:s
-                /*element.click(function() {
-                    //next
-                    if ($('#flickr_div').css('cursor') == "e-resize") {
-                        if (settings.currentIndex < (settings.imgArray.length - 1)) {
-                            settings.currentIndex = settings.currentIndex + 1;
-                            flickrhelpers.navImg(settings.currentIndex);
-                        }
-                    }
-                    //prev
-                    if ($('#flickr_div').css('cursor') == "w-resize") {
-                        if (settings.currentIndex > 0) {
-                            settings.currentIndex = settings.currentIndex - 1;
-                            flickrhelpers.navImg(settings.currentIndex);
-                        }
-                    }
-                });*/
+                // Set navigation click event:
 
                if (!(settings.flickrUser === null)) {
                     $.getJSON("http://api.flickr.com/services/rest/?format=json&method=flickr.photosets.getList&user_id=" + settings.flickrUser + "&api_key=" + settings.flickrKey + "&jsoncallback=?", function(flickrData){
@@ -60,7 +44,7 @@ var flickrhelpers = null;
                         Photo_sort = flickrData.photosets.photoset.sort(function(a,b){
                           return a.title._content < b.title._content? -1 : 1;
                         });
-                        $('.flexslider').before('<div id="flickr_sets" class="box"></div>');
+                        $("#container i").before('<div id="flickr_sets" class="box"></div>');
                         var sets = $("#flickr_sets");
                         var espetaculos = true;
                         var eventos = true;
@@ -69,27 +53,38 @@ var flickrhelpers = null;
                             var photoset = Photo_sort[i];
                             if(photoset.title._content.search(/\*/) >= 0){
                                 if(espetaculos){
-                              espetaculos = false;
-                              sets.append('<span id="eventos">Eventos</span>');
+                                  espetaculos = false;
+                                  sets.append('<div id="eventos"></div>');
+                                  $('#eventos').append('<h2>Eventos</h2>');
                                 }
                             } else if(photoset.title._content.search(/[#\-]/) >= 0){
                               if(eventos){
-                              eventos = false;
-                              sets.append('<span id="espetaculos">Espetáculos</span>');
+                                eventos = false;
+                                sets.append('<div id="espetaculos"></div>');
+                                $('#espetaculos').append("<h2>Espetáculos</h2>");
                               }
                             } else if(outras) {
                               outras = false;
-                              sets.append('<span id="outras">Aulas e Ensaios</span>');
+                              sets.append('<div id="outras"></div>');
+                              $('#outras').append('<h2>Aulas e Ensaios</h2>');
                             }
                             var args = "flickrSet=" + photoset.id;
-                            sets.append("<div id='"+photoset.id+"'><a href='?" + args + "' title='" + photoset.description._content + "'>" + photoset.title._content +  " </a></div>");
+							
+							sets.append("<div class='mosaic-block bar' id='"+photoset.id+"'></div>");
+                            $('#'+photoset.id+'.mosaic-block').append("<a href='?"+args+"' title='"+ photoset.description._content +"' class='mosaic-overlay' id='"+photoset.id+"'></a>");
+                            $('#'+photoset.id+'.mosaic-overlay').append("<div class='details' id='"+photoset.id+"'></div>");
+                            $('#'+photoset.id+'.details').append("<h4>"+photoset.title._content+"</h4>");
+        					$('#'+photoset.id+'.mosaic-overlay').after("<div class='mosaic-backdrop' id='"+photoset.id+"'></div>");
+
                             $.getJSON("http://api.flickr.com/services/rest/?format=json&method=flickr.photosets.getPhotos&photoset_id=" + photoset.id + "&extras=date_upload&api_key=" + settings.flickrKey + "&jsoncallback=?", function(flk){
                                 /*console.log(flk.photoset);*/
                                 last_photo = flk.photoset.photo.length - 1;
-                                var thumbURL = 'http://farm' + flk.photoset.photo[last_photo].farm + '.' + 'static.flickr.com/' + flk.photoset.photo[last_photo].server + '/' + flk.photoset.photo[last_photo].id + '_' + flk.photoset.photo[last_photo].secret + '_s.jpg'
-
-                                var thumbHTML = '<img src=' + thumbURL + ' width="25" height="25" title="' + flk.photoset.photo[last_photo].title + '">';
-                                $('#'+flk.photoset.id).prepend(thumbHTML);
+                                
+ 								var photoURL = 'http://farm' + flk.photoset.photo[last_photo].farm + '.' + 
+ 								'static.flickr.com/' + flk.photoset.photo[last_photo].server + '/' + 
+ 								flk.photoset.photo[last_photo].id + '_' + flk.photoset.photo[last_photo].secret +'.jpg';
+								                                
+                                 $('#'+flk.photoset.id+'.mosaic-backdrop').append("<img width='250' height='250' src="+ photoURL+"/>");	
                             });
                         }
                         if (settings.flickrSet === null)
@@ -101,6 +96,35 @@ var flickrhelpers = null;
                 }
 			}
 		}
+		setSlideImage = function(imagem, titulo, max_imagens){
+			$('#slider .slides').append("<li class='slide-flex-fotos'></li>");
+			if($('#slider .slides > li [src="'+ imagem +'"]').empty()) {
+		      $('#slider .slides li').append("<img id='thsImage' alt="+ titulo +" title="+titulo+" src="+ imagem +">");
+			}
+		 	
+		 	$('#carousel .slides').append("<li class='slide-flex-fotos'></li>");
+		 	if($('#carousel .slides > li [src="'+ imagem +'"]').empty()) {
+			  $('#carousel .slides li').append("<img id='thsImage' alt="+ titulo +" title="+titulo+" src="+ imagem +">");
+	     	}
+		}
+		verificaQuantiadedeImagensARemover = function(max_imagens){
+			listas = $(".slide-flex-fotos");
+	     	quantidade_de_imagens = listas.children().length;
+	     	if (quantidade_de_imagens > max_imagens){
+	     	  total_de_imagens_a_remover = (quantidade_de_imagens - max_imagens);
+	     	}
+	     	var i = 0;
+	     	while(i < total_de_imagens_a_remover){
+	     		lista = listas[i];
+				removerImagem(lista);
+			    i++;
+			}	   
+	     }
+	     removerImagem = function(lista){
+	     	while($(lista).children().length > 1){
+	     	  $(lista).children().last().remove();
+	     	};
+	     }
 
         loadFlickrSet = function() {
 				// Get the Flickr Set :)
@@ -108,51 +132,33 @@ var flickrhelpers = null;
 
 					var length = flickrData.photoset.photo.length;
 					var thumbHTML = '';
-					console.log("Element >>>>>", element);
+
+					$('#flickr_sets').before("<div id='slider-fotos'></div>");
+					$('#slider-fotos').append("<div id='slider' class='flexslider'></div>");
+				    $('.flexslider').append("<ul id='imagem-slide' class='slides'></ul>");
+
+				    $('#slider').after("<div id='carousel' class='flexslider'></div>");
+				    $('#carousel').append("<ul class='slides'></ul>");
+
 					for (i=0; i<length; i++) {
-						var photoURL = 'http://farm' + flickrData.photoset.photo[i].farm + '.' + 'static.flickr.com/' + flickrData.photoset.photo[i].server + '/' + flickrData.photoset.photo[i].id + '_' + flickrData.photoset.photo[i].secret +'.jpg'
-						var thumbURL = 'http://farm' + flickrData.photoset.photo[i].farm + '.' + 'static.flickr.com/' + flickrData.photoset.photo[i].server + '/' + flickrData.photoset.photo[i].id + '_' + flickrData.photoset.photo[i].secret + '_s.jpg'
-						thumbHTML += "<li class='flickr-gallery-flex' data-thumb=" + photoURL + "title=" + flickrData.photoset.photo[i].title + ">"+"</li>";
+						var photoURL = 'http://farm' + flickrData.photoset.photo[i].farm + '.' + 'static.flickr.com/' + flickrData.photoset.photo[i].server + '/' + flickrData.photoset.photo[i].id + '_' + flickrData.photoset.photo[i].secret +'.jpg';
+						var thumbURL = 'http://farm' + flickrData.photoset.photo[i].farm + '.' + 'static.flickr.com/' + flickrData.photoset.photo[i].server + '/' + flickrData.photoset.photo[i].id + '_' + flickrData.photoset.photo[i].secret + '_s.jpg';
+
+						//thumbHTML += '<img src=' + thumbURL + ' width="50" height="50" onclick="flickrhelpers.navImg('+ i +');" style="cursor: pointer;" title="' + flickrData.photoset.photo[i].title + '">';
 						settings.imgArray[i] = photoURL;
 						settings.titleArray[i] = flickrData.photoset.photo[i].title;
 					}
-
 					// Get the position of the element Flickr jqfobj will be loaded into
-					settings.x = element.offset().left;
-					settings.y = element.offset().top;
+					
 					settings.c = settings.x + (element.width() / 2);
 					settings.ct = settings.y + (element.height() / 2);
+					console.log("ELEMENT", element);
 
 					// position loader
 					$("#flickr_loader").css({
 						"left" : settings.x,
 						"top"  : settings.y
 					});
-					/*<div class="flexslider">
-					<ul class="slides">
-					<li data-thumb="http://www.hdwallpapersos.com/wp-content/uploads/2014/07/Full-Hd-Wallpaper-55.jpg">
-					<img src="http://www.hdwallpapersos.com/wp-content/uploads/2014/07/Full-Hd-Wallpaper-55.jpg" alt="" /></li>
-					</ul>
-					</div>*/
-
-					// Append the Thumbs holder to the body
-					$('#container').append('<div class="flexslider"></div>');
-					$(".flexslider").append('ul class="slides"></ul>');
-
-					$(".slides").append(thumbHTML);
-		
-
-          $('#flickr_thumbs').mousemove(function(e){
-            var div = $("#flickr_thumbs");
-            var ul = $("#flickr_thumbs_in");
-            var lastLi = ul.find('img:last-child');
-            var divWidth = div.width();
-            var ulWidth = lastLi[0].offsetLeft + lastLi.outerWidth();
-
-            var left = (e.pageX - div.offset().left) * (ulWidth-divWidth) / divWidth / 2;
-            div.scrollLeft(left);
-          });
-
 
 					// When data is set, load first image.
                     if (settings.last === null){
@@ -167,6 +173,7 @@ var flickrhelpers = null;
 		// Helper functions here
 		flickrhelpers = {
 			navImg : function (index) {
+				
 				// Set the global index
 				currentIndex = index;
 
@@ -179,47 +186,32 @@ var flickrhelpers = null;
 
 
 				// Create an image Obj with the URL from array
-				/*var thsImage = null;
+				var thsImage = null;
 				thsImage = new Image();
-				thsImage.src = settings.imgArray[index];*/
+				thsImage.src = settings.imgArray[index];
 
 				// Set global imgObj to jQuery img Object
-				settings.fImg = $( thsImage );
+				settings.Img = $(thsImage);
 
 				// Display the image
-				
-				$('.flickr-gallery-flex').append("<img src=" + settings.imgArray[index] + "/>");
-
+				for (var i =0; i < settings.imgArray.length; i++){
+				  setSlideImage(settings.imgArray[i],settings.titleArray[i], settings.imgArray.length);
+			    }
+			    verificaQuantiadedeImagensARemover(settings.imgArray.length);
 				// Call to function to take loader away once image is fully loaded
+
+        	    $('.bar').mosaic({
+                  animation:'slide'
+                });
+
 				$("#thsImage").load(function() {
 					// Set the aspect ratio
-					var w = $("#thsImage").width();
-					var h = $("#thsImage").height();
-					if (w > h) {
-						var fRatio = w/h;
-						$("#thsImage").css("width",element.width());
-						$("#thsImage").css("height",Math.round(element.width() * (1/fRatio)));
-					} else {
-						var fRatio = h/w;
-						$("#thsImage").css("height",element.height());
-						$("#thsImage").css("width",Math.round(element.height() * (1/fRatio)));
-					}
-
-          element.animate({height: $("#thsImage").height()}, 300, function(){
-            if (element.outerHeight() > $("#thsImage").outerHeight()) {
-              var thisHalfImage = $("#thsImage").outerHeight()/2;
-              var thisTopOffset = (element.outerHeight()/2) - thisHalfImage;
-              $("#thsImage").animate({marginTop: thisTopOffset+"px"}, 200);
-            }
-          });
-
-					var current_count = currentIndex + 1;
-					$("#flickr_count").html("Foto " + current_count + " / " + settings.imgArray.length);
-					if (settings.titleArray[currentIndex] != "") {
-						$("#flickr_count").append(" : " + settings.titleArray[currentIndex]);
-					}
-
-					$("#flickr_loader").fadeOut();
+					$("#flickr_loader").css({
+					  "top" : '240px',
+					  "left" : '480.5px',
+					  "display" : "block"
+				    });
+					$("#flickr_loader").fadeOut("slow");
 				});
 
 
@@ -251,45 +243,5 @@ var flickrhelpers = null;
 		jQuery(document).ready(function () {
 			methods.init();
 		});
-
-		// Sort of like an init() but re-positions dynamic elements if browser resized.
-		$(window).resize(function() {
-			// Get the position of the element Flickr jqfobj will be loaded into
-			settings.x = element.offset().left;
-			settings.y = element.offset().top;
-			settings.c = settings.x + (element.width() / 2);
-			settings.ct = settings.y + (element.height() / 2);
-
-			$("#flickr_loader").css("background-color","#fff"); // Set background color of loader to the background-color of container
-			$("#flickr_loader").css("width",element.width() + "px");
-			$("#flickr_loader").css("height",element.height() + "px");
-
-			$("#flickr_thumbs").css("background-color",element.css("background-color"));
-			$("#flickr_thumbs").css("width",element.width() + "px");
-		});
-
-		$(document).mousemove(function (e) {
-			// Set global mouse position
-			settings.mX = e.pageX;
-			settings.mY = e.pageY;
-
-			// Bounding box coordinents of jqfobject
-			var bY = settings.y + element.height();
-			var rX = settings.x + element.width();
-			if (((settings.mY > settings.y) && (settings.mY < bY)) && ((settings.mX > settings.x) && (settings.mX < rX))) {
-				if (settings.mX < settings.c) {
-					element.css("cursor","w-resize");
-				} else if (settings.mX > settings.c) {
-					element.css("cursor","e-resize");
-				} else {
-					element.css("cursor","pointer");
-				}
-			} else {
-			    element.css("cursor","pointer");
-			}
-		});
-
 	}
-
-
 })(jQuery);
