@@ -3,17 +3,7 @@ var apiKey = 'AIzaSyDC9f1UQjrU6uxvrNPB4Ze29sZt5SCnOts';
 calendarid = '3sv3aefg65slkecmgb1omfirc8@group.calendar.google.com';
     //url: encodeURI('https://www.googleapis.com/calendar/v3/calendars/' + calendarid+ '/events?key=' + apiKey),
 url_feed = 'https://www.google.com/calendar/feeds/'+calendarid+'/public/full';
-    google.load("gdata", 2);
-    function setupService() {
-      var service = new google.gdata.calendar.CalendarService('Agenda');
-      return service;
-    }
-
-    function getFeed(){
-      service = setupService();
-      service.getEventsFeed(url_feed);
-    }
-
+    
     $.ajax({
        type: 'GET',
        url: 'https://www.google.com/calendar/feeds/'+calendarid+'/public/basic?singleEvents=true&key='+apiKey,
@@ -22,23 +12,45 @@ url_feed = 'https://www.google.com/calendar/feeds/'+calendarid+'/public/full';
        dataType: 'jsonp',
        ProcessData: true,
        success: function (response) {
-        console.log("SUCCESS",response);       
+          getEventos(response);
        }, 
        error: function (response) {
         console.log("ERROR",response);
        }
      });
-    //https://www.googleapis.com/calendar/v3/calendars/"+ calendarid +"/
+    //https://www.googlewapis.com/calendar/v3/calendars/"+ calendarid +"/
     //events?key=private-a1159206bcc1fae12b66e2f602484b96/
     //full?alt=json-in-script&callback=?&orderby=updated&max-results=500&singleevents=true&sortorder=descending&futureevents=false
-    function onload(init) {
-      gapi.load('auth', init);
-      oauthToken = gapi.auth.getToken();
-      alert(oauthToken);
+    function getEventos(response) {
+      xmlAgenda = $.parseXML(response);
+      eventos = $(xmlAgenda).find("entry");
+      console.log(">>>>>>>>>>",xmlAgenda);
+      console.log(">>>>>", eventos);        
+      periodos = new Array(eventos.length);
+      for(var i = 0; i < eventos.length; i++){
+        publicado = $(eventos[i -1]).find("published").text(); 
+        content = "";
+        where = "";
+        title = $(eventos[i]).find("title").text();
+        periodo = $(eventos[i]).find("content").text();
+        data = periodo.match(/Quando: ([^<].*)/);
+        console.log('DATA: ', data[1]);
+        periodos[i] = publicado;
+        
+        
+        $('#accordion-container').append("<div id='" + title.replace(/ /g, "-") + 
+          "' class='accordion-header'><h2>" + data + " - " + title.toUpperCase() + 
+          "</h2></div><div class='accordion-content'>" + content + "<p>" + where + "</p><div/>");
+      }
+      console.log("PERIODOS: ", periodos);
+    };
+
+    function inserindoHtml(periodos, eventos){
+      
     }
     
   /*$.getJSON('https://www.google.com/calendar/feeds/'+calendarid+'/public/basic?singleEvents=true&key='+apiKey,
-  function(agenda) {    
+  fu\nction(agenda) {    
     if (agenda.feed.entry == undefined) {
       return;
     }
