@@ -1,44 +1,56 @@
-$.getJSON("https://www.google.com/calendar/feeds/performancefb%40hotmail.com/private-9a607467878beac5e27bfa591212c1c1/full?alt=json-in-script&callback=?&orderby=starttime&max-results=500&singleevents=true&sortorder=ascending&futureevents=false",
-  function(agenda) {
-    if (agenda.feed.entry == undefined) {
-      $("#agenda").append("Nada cadastrado.");
-      return;
-    }
-    var length = agenda.feed.entry.length;
-    var year = new Date().getYear() + 1900;
-    for (i = 0; i < length; i++) {
-      var data = agenda.feed.entry[i].gd$when[0];
-      var y = data.startTime.split("-")[0];
-      if (y == year) {
-        var startTime = data.startTime.replace(/T.*/, "").split("-").reverse().join("/");
-        var endTime = data.endTime.replace(/T.*/, "").split("-").reverse().join("/");
-        var title = agenda.feed.entry[i].title.$t;
-        var periodo = startTime
-        color = "#000";
-        if (title.search(/prova/i) >= 0) {
-          color = "#ff0080";
-        }
-        if (title.search(/(in.cio|final|f.rias|volta)/i) >= 0) {
-          color = "red";
-        }
-        content = agenda.feed.entry[i].content.$t;
-        content = content.replace(/(http[^ ]+.(jpg|jpeg|gif|png))/mg, "<img src='\$1' style='float:left;margin:10px;max-width:906px'/>");
-
-        if (startTime == endTime) {
-          $('#agenda').append("<div id='" + title.replace(/ /g, "-") + "' class='accordion-header'><h4 style='color:" + color + "'>" + startTime + " - " + title + "</h4></div><div class='accordion-content'>" + content + "</div>");
-        } else if (startTime.split("/")[1] == endTime.split("/")[1] && startTime.split("/")[2] == endTime.split("/")[2]) {
-          $('#agenda').append("<div id='" + title.replace(/ /g, "-") + "' class='accordion-header'><h4 style='color:" + color + "'>" + startTime + " - " + title + "</h4></div><div class='accordion-content'>" + content + "</div>");
+var CLIENT_ID = '186026638324-0l2m013uh26dlvgemd2i7tc994ua9fma.apps.googleusercontent.com';
+var apiKey = 'AIzaSyDC9f1UQjrU6uxvrNPB4Ze29sZt5SCnOts';
+calendarid = 'performancefb%40hotmail.com';
+    
+    $.ajax({
+       type: 'GET',
+       url: 'https://www.google.com/calendar/feeds/'+calendarid+'/public/basic?singleEvents=true&key='+apiKey,
+       headers:'Access-Control-Allow-Origin',
+       crossDomain: true,
+       dataType: 'jsonp',
+       ProcessData: true,
+       success: function (response) {
+          getEventos(response);
+       }, 
+       error: function (response) {
+        console.log("ERROR",response);
+       }
+     });
+    
+    function getEventos(response) {
+      vallenato();
+      xmlAgenda = $.parseXML(response);
+      eventos = $(xmlAgenda).find("entry");
+      for(var i = 0; i < eventos.length; i++){        
+        data = $(eventos[i]).find("content").text().match(/Quando: ([^<].*)/);
+        conteudo = $(eventos[i]).find("content").text();
+        if (conteudo.match(/Descri.* do evento: ([^"]+.*)/) != null){
+          conteudo = conteudo.match(/Descri.* do evento: ([^"]+.*)/)[0];
         } else {
-          $('#agenda').append("<div id='" + title.replace(/ /g, "-") + "' class='accordion-header'><h4 style='color:" + color + "'>" + startTime + " - " + title + "</h4></div><div class='accordion-content'>" + content + "</div>");
+          conteudo = "";
         }
+        local = "";
+        titulo = $(eventos[i]).find("title").text();
+        data = $(eventos[i]).find("content").text().match(/Quando: ([^<].*)/);
+        injetaAccordion(titulo, data[1], conteudo, local);
       }
-    }
-    vallenato();
-    if (window.location.hash.length > 0) {
-      var target_offset = $(window.location.hash).offset();
-      var target_top = target_offset.top;
-      $('html, body').animate({
-        scrollTop: target_top
-      }, 500);
-    }
-  });
+      
+    };
+
+    function injetaAccordion(titulo, data, conteudo, local) {
+      conteudo = conteudo.replace(/(http[^ ]+.(jpg|jpeg|gif|png))/mg, "<img src='\$1' style='max-width:100%;max-height: auto'/>");
+      conteudo = conteudo.replace(/download\(([^;]+);([^"]*)\)/, "<a href='\$1' title='Download' target='_blank'><img src='https://cdn1.iconfinder.com/data/icons/pretty_office_3/32/Package-Download.png' style='margin: 0 auto' />\$2</a>");
+      titulo = titulo.replace(/ /g, "-");
+
+      if (conteudo){
+        $('#accordion-container').append("<div id='"+ titulo + 
+            "' class='accordion-header'><h2>"+ data +" - "+ titulo.toUpperCase() + 
+            "</h2></div><div class='accordion-content'>"+ conteudo +"<p>"+ local +"</p><div/>");      
+      } else {
+        $('#accordion-container').append("<div id='"+ titulo + 
+            "' class='accordion-header'><h2>"+ data +" - "+ titulo.toUpperCase() + 
+            "</h2></div><div class='accordion-content'>"+ conteudo +"<p>"+ local +"</p><div/>");
+        $('div#'+titulo).removeClass('inactive-header');
+        $('div#'+titulo).addClass('text-center');
+      }
+    };

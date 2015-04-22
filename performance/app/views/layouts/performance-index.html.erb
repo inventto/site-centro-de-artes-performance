@@ -66,12 +66,14 @@
     $(document).ready(function(){
       tooltips();
       page = window.location.pathname.split("/").reverse()[0];
-      if (page == "agenda" || page == "calendar") {
-        $('<script />', { type : 'text/javascript', src : "/assets/agenda-eventos.js" }).appendTo('head');
-        $('<script />', { type : 'text/javascript', src : "https://apis.google.com/js/client.js?onload=handleClientLoad"}).appendTo('head');
+      if (page == "agenda") {
         $('<script />', { type : 'text/javascript', src : "http://www.google.com/jsapi"}).appendTo('head');
-
+        $('<script />', { type : 'text/javascript', src : "/assets/vallenato.js"}).appendTo('head');
+        $('<link />', { type : 'text/stylesheet', src : "/assets/vallenato.css"}).appendTo('head');
+        $('<script />', { type : 'text/javascript', src : "/assets/agenda-eventos.js" }).appendTo('head');
       } else if (page == "calendario") {
+        $('<script />', { type : 'text/javascript', src : "/assets/vallenato.js"}).appendTo('head');
+        $('<link />', { type : 'text/stylesheet', src : "/assets/vallenato.css"}).appendTo('head');
         $('<script />', { type : 'text/javascript', src : "/assets/calendario.js" }).appendTo('head');
       } else if (page == 'fotos') {
         $('<script />', { type : 'text/javascript', src : "/assets/jquery.flexslider-min.js"}).appendTo('head');

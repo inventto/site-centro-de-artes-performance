@@ -37,6 +37,8 @@ var flickrhelpers = null;
 				element.css("overflow","hidden");
 
                 // Set navigation click event:
+                console.log(settings.flickrUser);
+                console.log(settings.flickrKey);
 
                if (!(settings.flickrUser === null)) {
                     $.getJSON("http://api.flickr.com/services/rest/?format=json&method=flickr.photosets.getList&user_id=" + settings.flickrUser + "&api_key=" + settings.flickrKey + "&jsoncallback=?", function(flickrData){

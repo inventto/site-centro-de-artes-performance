@@ -21,75 +21,43 @@ url_feed = 'https://www.google.com/calendar/feeds/'+calendarid+'/public/full';
     //https://www.googlewapis.com/calendar/v3/calendars/"+ calendarid +"/
     //events?key=private-a1159206bcc1fae12b66e2f602484b96/
     //full?alt=json-in-script&callback=?&orderby=updated&max-results=500&singleevents=true&sortorder=descending&futureevents=false
+    
     function getEventos(response) {
+      
       xmlAgenda = $.parseXML(response);
-      eventos = $(xmlAgenda).find("entry");
-      console.log(">>>>>>>>>>",xmlAgenda);
-      console.log(">>>>>", eventos);        
-      periodos = new Array(eventos.length);
-      for(var i = 0; i < eventos.length; i++){
-        publicado = $(eventos[i -1]).find("published").text(); 
-        content = "";
-        where = "";
-        title = $(eventos[i]).find("title").text();
-        periodo = $(eventos[i]).find("content").text();
-        data = periodo.match(/Quando: ([^<].*)/);
-        console.log('DATA: ', data[1]);
-        periodos[i] = publicado;
-        
-        
-        $('#accordion-container').append("<div id='" + title.replace(/ /g, "-") + 
-          "' class='accordion-header'><h2>" + data + " - " + title.toUpperCase() + 
-          "</h2></div><div class='accordion-content'>" + content + "<p>" + where + "</p><div/>");
+      eventos = $(xmlAgenda).find("entry");        
+      vallenato();
+      for(var i = 0; i < eventos.length; i++){ 
+
+        data = $(eventos[i]).find("content").text().match(/Quando: ([^<].*)/);
+        conteudo = $(eventos[i]).find("content").text();
+        if (conteudo.match(/Descri.* do evento: ([^"]+.*)/) != null){
+          conteudo = conteudo.match(/Descri.* do evento: ([^"]+.*)/)[0];
+        }  else {
+          conteudo = "";
+        }
+        local = "";
+        titulo = $(eventos[i]).find("title").text();
+        data = $(eventos[i]).find("content").text().match(/Quando: ([^<].*)/);
+        injetaAccordion(titulo, data[1], conteudo, local);
       }
-      console.log("PERIODOS: ", periodos);
+      vallenato();
     };
 
-    function inserindoHtml(periodos, eventos){
-      
-    }
-    
-  /*$.getJSON('https://www.google.com/calendar/feeds/'+calendarid+'/public/basic?singleEvents=true&key='+apiKey,
-  fu\nction(agenda) {    
-    if (agenda.feed.entry == undefined) {
-      return;
-    }
-    length = agenda.feed.entry.length;
-    year = new Date().getYear() + 1900;
-    for (i = 0; i < length; i++) {
-      data = agenda.feed.entry[i].gd$when[0];
-      y = data.startTime.split("-")[0];
-      if (y == year) {
-        where = agenda.feed.entry[i].gd$where[0].valueString;
-        if (where != "") {
-          where = "<strong>Local:</strong> " + where;
-        }
-        content = agenda.feed.entry[i].content.$t;
-        content = content.replace("\n", "<br/>");
-        title = agenda.feed.entry[i].title.$t;
-        
-      //  startTime = data.startTime.replace(/T.*/ //, "").split("-").reverse().join("/");
-      //  endTime = data.endTime.replace(/T.*/, "").split("-").reverse().join("/");
-      /*  color = "#000";
-        content = content.replace(/(http[^ ]+.(jpg|jpeg|gif|png))/mg, "<img src='\$1' style='float:left;margin:10px;width: 906px;'/>");
-        content = content.replace(/download\(([^;]+);"([^"]*)"\)/, "<a href='\$1' title='Download' target='_blank'><img src='https://cdn1.iconfinder.com/data/icons/pretty_office_3/32/Package-Download.png' style='margin:0 10px -10px 0;' />\$2</a>");
-        if (startTime == endTime) {
-          $('#accordion-container').append("<div id='" + title.replace(/ /g, "-") + "' class='accordion-header'><h2>" + startTime + " - " + title.toUpperCase() + "</h2></div><div class='accordion-content'>" + content + "<p>" + where + "</p></div>");
-        } else if (startTime.split("/")[1] == endTime.split("/")[1] && startTime.split("/")[2] == endTime.split("/")[2]) {
-          periodo = startTime.split("/")[0] + " a " + endTime
-          $('#accordion-container').append("<div id='" + title.replace(/ /g, "-") + "' class='accordion-header'><h2>" + periodo + " - " + title.toUpperCase() + "</h2></div><div class='accordion-content'>" + content + "<p>" + where + "</p></div>");
-        } else {
-          periodo = startTime + " a " + endTime
-          $('#accordion-container').append("<div id='" + title.replace(/ /g, "-") + "' class='accordion-header'><h2>" + periodo + " - " + title.toUpperCase() + "</h2></div><div class='accordion-content'>" + content + "<p>" + where + "</p><div/>");
-        }
+    function injetaAccordion(titulo, data, conteudo, local) {
+      conteudo = conteudo.replace(/(http[^ ]+.(jpg|jpeg|gif|png))/mg, "<img src='\$1' style='max-width:100%;max-height: auto'/>");
+      conteudo = conteudo.replace(/download\(([^;]+);([^"]*)\)/, "<a href='\$1' title='Download' target='_blank'><img src='https://cdn1.iconfinder.com/data/icons/pretty_office_3/32/Package-Download.png' style='margin: 0 auto' />\$2</a>");
+      titulo = titulo.replace(/ /g, "-");
+
+      if (conteudo){
+        $('#accordion-container').append("<div id='"+ titulo + 
+            "' class='accordion-header'><h2>"+ data +" - "+ titulo.toUpperCase() + 
+            "</h2></div><div class='accordion-content'>"+ conteudo +"<p>"+ local +"</p><div/>");      
+      } else {
+        $('#accordion-container').append("<div id='"+ titulo + 
+            "' class='accordion-header'><h2>"+ data +" - "+ titulo.toUpperCase() + 
+            "</h2></div><div class='accordion-content'>"+ conteudo +"<p>"+ local +"</p><div/>");
+        $('div#'+titulo).removeClass('inactive-header');
+        $('div#'+titulo).addClass('text-center');
       }
-    }
-    vallenato();
-    if (window.location.hash.length > 0) {
-      var target_offset = $(window.location.hash).offset();
-      var target_top = target_offset.top;
-      $('html, body').animate({
-        scrollTop: target_top
-      }, 500);
-    }
-  });*/
+    };
