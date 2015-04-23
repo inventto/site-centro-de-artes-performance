@@ -41,7 +41,8 @@ var flickrhelpers = null;
                 console.log(settings.flickrKey);
 
                if (!(settings.flickrUser === null)) {
-                    $.getJSON("http://api.flickr.com/services/rest/?format=json&method=flickr.photosets.getList&user_id=" + settings.flickrUser + "&api_key=" + settings.flickrKey + "&jsoncallback=?", function(flickrData){
+                    $.getJSON("https://api.flickr.com/services/rest/?format=json&method=flickr.photosets.getList&user_id=" + 
+                    	settings.flickrUser + "&api_key=" + settings.flickrKey + "&jsoncallback=?", function(flickrData){
                         var length = flickrData.photosets.total;
                         Photo_sort = flickrData.photosets.photoset.sort(function(a,b){
                           return a.title._content < b.title._content? -1 : 1;
@@ -78,7 +79,7 @@ var flickrhelpers = null;
                             $('#'+photoset.id+'.details').append("<h4>"+photoset.title._content+"</h4>");
         					$('#'+photoset.id+'.mosaic-overlay').after("<div class='mosaic-backdrop' id='"+photoset.id+"'></div>");
 
-                            $.getJSON("http://api.flickr.com/services/rest/?format=json&method=flickr.photosets.getPhotos&photoset_id=" + photoset.id + "&extras=date_upload&api_key=" + settings.flickrKey + "&jsoncallback=?", function(flk){
+                            $.getJSON("https://api.flickr.com/services/rest/?format=json&method=flickr.photosets.getPhotos&photoset_id=" + photoset.id + "&extras=date_upload&api_key=" + settings.flickrKey + "&jsoncallback=?", function(flk){
                                 /*console.log(flk.photoset);*/
                                 last_photo = flk.photoset.photo.length - 1;
                                 
@@ -130,7 +131,8 @@ var flickrhelpers = null;
 
         loadFlickrSet = function() {
 				// Get the Flickr Set :)
-				$.getJSON("http://api.flickr.com/services/rest/?format=json&method=flickr.photosets.getPhotos&photoset_id=" + settings.flickrSet + "&api_key=" + settings.flickrKey + "&jsoncallback=?", function(flickrData){
+				$.getJSON("https://api.flickr.com/services/rest/?format=json&method=flickr.photosets.getPhotos&photoset_id=" + 
+					settings.flickrSet + "&api_key=" + settings.flickrKey + "&jsoncallback=?", function(flickrData){
 
 					var length = flickrData.photoset.photo.length;
 					var thumbHTML = '';

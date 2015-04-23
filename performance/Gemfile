@@ -17,6 +17,7 @@ gem 'therubyracer', platforms: :ruby
 gem 'sendgrid-rails'
 gem 'twitter-bootstrap-rails', :github => 'seyhunak/twitter-bootstrap-rails', :branch => 'bootstrap3'
 gem 'less-rails'
+gem 'dotenv-rails'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
